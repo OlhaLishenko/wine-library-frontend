@@ -1,0 +1,19 @@
+@use './styles/global.scss' as *;
+@use './styles/fonts.scss' as *;
+
+:root {
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+iframe {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}

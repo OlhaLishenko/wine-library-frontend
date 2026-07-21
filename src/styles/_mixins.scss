@@ -1,0 +1,47 @@
+@use 'variables' as *;
+
+@mixin onTablet {
+  @media (min-width: $onTablet) {
+    @content;
+  }
+}
+
+@mixin onDesktop {
+  @media (min-width: $onDesktop) {
+    @content;
+  }
+}
+
+@mixin Content-padding-inline {
+  padding-inline: $padding-inline;
+
+  @include onTablet {
+    padding-inline: $padding-inline-tablet;
+  }
+}
+
+// Accessible keyboard focus ring.
+@mixin focus-ring($color: $color-gold) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+}
+
+@mixin FontBasic ($size, $weight, $color: $color-cream) {
+  font-family: $font-body;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin FontHeading ($size, $weight, $color: $color-cream) {
+  font-family: $font-heading;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin Hover {
+  transition: all 0.2s ease-in-out;
+}

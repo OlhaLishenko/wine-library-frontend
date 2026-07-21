@@ -1,0 +1,117 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+@use './_logIn.variables.scss/index.scss' as *;
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $color-surface;
+  justify-content: start;
+  position: relative;
+
+  @include onDesktop {
+    flex-direction: row;
+    justify-content: normal;
+  }
+}
+
+.disabled {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  min-height: 160px;
+  overflow: hidden;
+  background-image:
+    map-get($images, 'overlay'),
+    var(--bg-desktop);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @include onTablet {
+    justify-content: flex-end;
+    min-height: 260px;
+    padding: $space-3;
+    background-image: map-get($images, 'overlay'), var(--bg-tablet);
+  }
+
+  @include onDesktop {
+    min-height: 100vh;
+    padding: $space-8;
+    background-image: map-get($images, 'overlay'), var(--bg-desktop);
+  }
+}
+
+.quote {
+  @include FontHeading(20px, 700);
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 26ch;
+  line-height: 1.4;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  display: none;
+
+  @include onTablet {
+    @include FontHeading(15px, 600);
+    display: block;
+  }
+
+  @include onDesktop {
+    @include FontHeading(22px, 600);
+  }
+}
+
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-6;
+  background: $color-surface;
+  padding-bottom: 80px;
+
+  @include onTablet {
+    padding: $space-8;
+    width: fit-content;
+    margin-inline: auto;
+  }
+}
+
+.separator {
+  display: flex;
+  margin-bottom: 50px;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, $color-burgundy 0%, $color-gold 50%, $color-burgundy 100%);
+
+  @include onDesktop {
+    display: none;
+  }
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  width: -webkit-fill-available;
+
+  @include onDesktop {
+    justify-content: center;
+  }
+}
