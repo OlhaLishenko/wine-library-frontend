@@ -1,0 +1,87 @@
+@use '@/styles/_variables' as *;
+@use '@/styles/_mixins' as *;
+
+.modal {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  z-index: 2;
+  @include Content-padding-inline();
+
+  // @include onTablet {
+  //   padding-inline: 77px;
+  //   bottom: 50px;
+  // }
+
+  // transform: translateY(100%);
+  // transition: all 1000ms ease-in-out;
+
+  &__container {
+    @include Content-padding-inline();
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    padding-block: 60px;
+    width: 100%;
+    background-color: $color-bg;
+    border: 2px solid $color-gold-dark;
+    border-radius: 8px;
+
+    @include onTablet {}
+  }
+
+  &__message {
+    @include FontBasic(14px, 400, $color-error);
+    padding-block: 30px;
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+
+    @include onTablet {
+      flex-direction: row;
+    }
+  }
+
+  &__closeBtn {
+    @include Hover;
+
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(110%);
+    }
+  }
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+
+  &__title {
+    @include FontHeading (20px, 800);
+  }
+
+  &__subtitle {
+    @include FontBasic (13px, 400);
+  }
+}
+
+// .open {
+//   transform: translateY(0);
+// }

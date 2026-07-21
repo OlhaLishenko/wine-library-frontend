@@ -1,0 +1,66 @@
+// ===========================================================================
+// Wine Library — Design Tokens (Concept 1: Elegant Luxury)
+// Dark burgundy + gold. Single source of truth for colors, type, spacing.
+// ===========================================================================
+
+// --- Colors --------------------------------------------------------------
+$color-bg: #1F1517; // page / deepest surface
+$color-surface: #1f1517; // panels, cards
+$color-surface-alt: #2a1b1e; // raised elements
+
+$color-gold: #d4af37;
+$color-gold-hover: #e4c558;
+$color-gold-dark: #8a6a16;
+
+$color-burgundy: #6b1423;
+$color-burgundy-deep: #3b0a14;
+
+$color-cream: #f5ede4; // primary text on dark
+$color-text-muted: #c9bbb0; // secondary text
+$color-text-subtle: #8a7c71; // tertiary / placeholder
+
+$color-error: #e5484d;
+$color-success: #6e8a5e;
+
+// Alpha borders (gold at low opacity)
+$color-border: rgba(212, 175, 55, 0.25);
+$color-border-hover: rgba(212, 175, 55, 0.45);
+$color-border-strong: rgba(212, 175, 55, 0.4);
+
+// --- Typography ----------------------------------------------------------
+$font-heading: 'PlusJakarta', sans-serif;
+$font-body: 'Inter', sans-serif;
+
+// --- Radius --------------------------------------------------------------
+$radius-sm: 8px;
+$radius-md: 10px;
+$radius-lg: 16px;
+$radius-pill: 100px;
+
+// --- Spacing (8px system) ------------------------------------------------
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 20px;
+$space-6: 24px;
+$space-7: 32px;
+$space-8: 40px;
+$space-9: 48px;
+
+// --- Elevation -----------------------------------------------------------
+$shadow-panel: 0 24px 60px rgba(0, 0, 0, 0.5);
+$shadow-button: 0 6px 18px rgba(212, 175, 55, 0.25);
+
+// --- Breakpoints ---------------------------------------------------------
+$onMobile: 320px;
+$onTablet: 620px;
+$onDesktop: 1024px;
+
+// --- Motion --------------------------------------------------------------
+$transition-fast: 0.18s ease;
+$transition-press: 0.06s ease;
+
+// --- Padding --------------------------------------------------------------
+$padding-inline: 24px;
+$padding-inline-tablet: 33px;
