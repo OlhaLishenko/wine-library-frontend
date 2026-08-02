@@ -1,0 +1,28 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 15px;
+
+  @include onDesktop {}
+}
+
+.headerNav {
+  display: flex;
+  flex-direction: row;
+  gap: $space-20;
+  align-items: center;
+}
+
+.menuBtn {
+  fill: $color-cream;
+  width: 18px;
+  height: 18px;
+}
+
+.headerNavIcon {
+  color: $color-text-muted;
+}

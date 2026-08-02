@@ -2,9 +2,11 @@ import { Navigate, Route, Routes } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import App from './App';
-import { LibraryPage } from './pages/LibraryPage/LibraryPage';
 import { LoginPageWrapper } from './pages/LogInPage/LoginPage';
 import { CreateAccountPageWrapper } from './pages/CreateAccount/CreateAccountPage';
+import { ProductCard } from './features/wine-library/components/ProductCard';
+import { Favorites } from './pages/Favorites';
+import { LibraryPage } from './pages/LibraryPage';
 
 export const Root = () => {
   return (
@@ -16,7 +18,8 @@ export const Root = () => {
           <Route path="login" element={<LoginPageWrapper />} />
           <Route path="create-account" element={<CreateAccountPageWrapper />} />
           <Route path="library" element={<LibraryPage />} />
-          {/* <Route path="favourites" element={<Favourites />} /> */}
+          {/* <Route path="productCard" element={<ProductCard />} /> */}
+          <Route path="favorites" element={<Favorites />} />
           {/* <Route path=":productId" element={<ProductDetailsPage />} /> */}
         </Route>
         {/* <Route path="*" element={<NotFoundPage />} /> */}

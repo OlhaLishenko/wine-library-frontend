@@ -13,10 +13,14 @@
 }
 
 @mixin Content-padding-inline {
-  padding-inline: $padding-inline;
+  padding-inline: $padding-mobile;
 
   @include onTablet {
-    padding-inline: $padding-inline-tablet;
+    padding-inline: $padding-tablet;
+  }
+
+  @include onDesktop {
+    padding-inline: $padding-desktop;
   }
 }
 

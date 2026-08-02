@@ -4,6 +4,7 @@ import { Button } from '../Button/Button';
 import { useContext } from 'react';
 import { ModalScreenContext } from '../../hooks/modalScreen.context';
 import classNames from 'classnames';
+import { TITLE } from '@/shared/constants/context';
 
 type ModalScreenType = {
   message: string | null;
@@ -23,21 +24,21 @@ export function ModalScreen({ message, onResent }: ModalScreenType) {
         [styles.open]: openModal,
       })}
     >
-      <div className={styles.modal__container}>
-        <button className={styles.modal__closeBtn} onClick={handleClose}>
+      <div className={styles.modalContainer}>
+        <button className={styles.modalCloseBtn} onClick={handleClose}>
           <Icons.Close />
         </button>
         <Icons.ErrorAlert />
         <div className={styles.textContent}>
-          <h1 className={styles.textContent__title}>Something went wrong</h1>
-          <h2 className={styles.textContent__subtitle}>{message}</h2>
+          <h1 className={styles.textContentTitle}>{TITLE.modal.title}</h1>
+          <h2 className={styles.textContentSubtitle}>{message}</h2>
         </div>
-        <div className={styles.modal__btns}>
+        <div className={styles.modalBtns}>
           <Button onClick={onResent} fullWidth>
-            Try Again
+            {TITLE.modal.btnOk}
           </Button>
           <Button onClick={handleClose} fullWidth variant={'ghost'}>
-            Dismiss
+            {TITLE.modal.btnCancel}
           </Button>
         </div>
       </div>

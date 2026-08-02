@@ -1,5 +1,6 @@
 @use './styles/global.scss' as *;
 @use './styles/fonts.scss' as *;
+@use './styles/mixins.scss' as *;
 
 :root {
   font-family: 'Inter', sans-serif;
@@ -16,4 +17,28 @@ body {
   padding: 0;
   min-width: 320px;
   min-height: 100vh;
+}
+
+.container {
+  @include Content-padding-inline;
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.icon {
+  fill: currentColor;
+
+  @include onDesktop {
+    width: 30px;
+    height: 30px;
+  }
+
+  &--small {
+    width: 15px;
+    height: 15px;
+  }
 }

@@ -1,5 +1,8 @@
 import { forwardRef, useState } from 'react';
-import { Input, type InputProps } from '../Input/Input';
+import {
+  Input,
+  type InputProps,
+} from '../../../../shared/components/Input/Input';
 import { EyeIcon, EyeOffIcon } from '../icons/Icons';
 import styles from './PasswordInput.module.scss';
 

@@ -1,6 +1,6 @@
 import { images } from '@/assets/auth.images';
 import { AuthLayout } from '../../layouts/AuthLayout/AuthLayout';
-import { QUOTES, TITLE } from '@/constants/context';
+import { QUOTES, TITLE } from '@/shared/constants/context';
 import { AuthFormLayout } from '@/features/auth/components/AuthFormLayout/AuthFormLayout';
 import { CreateAccountForm } from '@/features/auth/components/CreateAccountForm/CreateAccountForm';
 import {

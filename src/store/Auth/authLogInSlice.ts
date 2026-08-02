@@ -1,20 +1,20 @@
 import { AuthResponse } from '@/features/auth/types/AuthResponse';
 import { User } from '@/features/auth/types/User';
-import { authService } from '@/services/authService';
+import { authService } from '@/services/auth.service';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 type AuthState = {
-  user: User | null;
   token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
   error: string | null;
 };
 
+const storedToken = localStorage.getItem('token');
+
 const AuthState: AuthState = {
-  user: null,
-  token: null,
-  isAuthenticated: false,
+  token: storedToken,
+  isAuthenticated: !!storedToken,
   loading: false,
   error: null,
 };
@@ -41,7 +41,13 @@ export const logInUser = createAsyncThunk(
 export const authLogInSlice = createSlice({
   name: 'authLogIn',
   initialState: AuthState,
-  reducers: {},
+  reducers: {
+    logOut: (state) => {
+      state.token = null;
+      state.isAuthenticated = false;
+      localStorage.removeItem('token');
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(logInUser.pending, (state) => {
@@ -52,6 +58,7 @@ export const authLogInSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = true;
         state.token = action.payload.token;
+        localStorage.setItem('token', action.payload.token);
       })
       .addCase(logInUser.rejected, (state, action) => {
         state.loading = false;
@@ -59,5 +66,5 @@ export const authLogInSlice = createSlice({
       });
   },
 });
-
+export const { logOut } = authLogInSlice.actions;
 export default authLogInSlice.reducer;

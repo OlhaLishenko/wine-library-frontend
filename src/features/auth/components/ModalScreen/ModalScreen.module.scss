@@ -8,62 +8,61 @@
   justify-content: center;
   z-index: 2;
   @include Content-padding-inline();
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-  // @include onTablet {
-  //   padding-inline: 77px;
-  //   bottom: 50px;
-  // }
+}
 
-  // transform: translateY(100%);
-  // transition: all 1000ms ease-in-out;
+.modalContainer {
+  @include Content-padding-inline();
 
-  &__container {
-    @include Content-padding-inline();
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  padding-block: 60px;
+  width: 100%;
+  background-color: $color-bg;
+  border: 2px solid $color-gold-dark;
+  border-radius: 8px;
 
-    padding-block: 60px;
-    width: 100%;
-    background-color: $color-bg;
-    border: 2px solid $color-gold-dark;
-    border-radius: 8px;
-
-    @include onTablet {}
+  @include onTablet {
+    width: 650px;
   }
+}
 
-  &__message {
-    @include FontBasic(14px, 400, $color-error);
-    padding-block: 30px;
+.modalMessage {
+  @include FontBasic(14px, 400, $color-error);
+  padding-block: 30px;
+}
+
+.modalBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+
+  @include onTablet {
+    flex-direction: row;
   }
+}
 
-  &__btns {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    margin-top: 20px;
+.modalCloseBtn {
+  @include Hover;
 
-    @include onTablet {
-      flex-direction: row;
-    }
-  }
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
 
-  &__closeBtn {
-    @include Hover;
-
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-
-    &:hover {
-      transform: scale(110%);
-    }
+  &:hover {
+    transform: scale(110%);
   }
 }
 
@@ -72,16 +71,12 @@
   flex-direction: column;
   gap: 20px;
   text-align: center;
-
-  &__title {
-    @include FontHeading (20px, 800);
-  }
-
-  &__subtitle {
-    @include FontBasic (13px, 400);
-  }
 }
 
-// .open {
-//   transform: translateY(0);
-// }
+.textContentTitle {
+  @include FontHeading (20px, 800);
+}
+
+.textContentSubtitle {
+  @include FontBasic (13px, 400);
+}
