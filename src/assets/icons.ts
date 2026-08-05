@@ -8,6 +8,8 @@ import IconPlus from './icons/icon-plus.svg?react';
 import IconMinus from './icons/icon-minus.svg?react';
 import IconCross from './icons/icon-cross.svg?react';
 import IconNotFound from './icons/icon-not-found.svg?react';
+import ArrowRightIcon from './icons/icon-arrow-right.svg?react';
+import ArrowLeftIcon from './icons/icon-arrow-left.svg?react';
 
 export const Icons = {
   ErrorAlert: IconErrorAlert,
@@ -20,4 +22,6 @@ export const Icons = {
   Minus: IconMinus,
   Cross: IconCross,
   NotFound: IconNotFound,
+  ArrowRight: ArrowRightIcon,
+  ArrowLeft: ArrowLeftIcon,
 };

@@ -10,7 +10,7 @@ import { useWineFilters } from '../../hooks/useWineFilters';
 type ProductListProps = {};
 
 export const ProductList: React.FC<ProductListProps> = ({}) => {
-  const { wineList, isLast } = useAppSelector((state) => state.wineList);
+  const { wineList, isLast, error } = useAppSelector((state) => state.wineList);
   const { isMobile } = useScreenWidth();
   const { filters, updateFilters } = useWineFilters();
 
@@ -24,16 +24,27 @@ export const ProductList: React.FC<ProductListProps> = ({}) => {
 
   return (
     <div className={styles.productListContainer}>
-      <div className={styles.productList}>
-        {wineList.map((item) => (
-          <ProductCard wineItem={item} key={item.id} />
-        ))}
-      </div>
-      <div className={styles.btnContainer}>
-        <Button variant="ghost" onClick={loadMore} disabled={isLast}>
-          <BtnTitle>{buttonTitle}</BtnTitle>
-        </Button>
-      </div>
+      {error ? (
+        <span className={styles.error}>{error}</span>
+      ) : wineList.length === 0 ? (
+        <span className={styles.error}>
+          Can not find wines with that filters
+        </span>
+      ) : (
+        <div className={styles.productList}>
+          {wineList.map((item) => (
+            <ProductCard wineItem={item} key={item.id} />
+          ))}
+        </div>
+      )}
+
+      {!error && wineList.length !== 0 && (
+        <div className={styles.btnContainer}>
+          <Button variant="ghost" onClick={loadMore} disabled={isLast}>
+            <BtnTitle>{buttonTitle}</BtnTitle>
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

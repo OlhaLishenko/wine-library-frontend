@@ -11,8 +11,12 @@
   height: auto;
   display: flex;
   flex-direction: column;
-
+  margin-left: 16px;
   overflow: hidden;
+
+  user-select: none;
+  scroll-snap-align: start;
+
   border-radius: 16px;
   transition:
     transform 0.25s ease,
@@ -27,6 +31,17 @@
   @include onTablet {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+.cardSlider {
+  margin-left: 16px;
+  transition: none;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+    cursor: pointer;
   }
 }
 
@@ -59,29 +74,6 @@
 
   @include onTablet {
     justify-content: space-evenly;
-  }
-}
-
-.title {
-  @include FontHeading(17px, 800);
-}
-
-.subtitle {
-  @include FontBasic(13px, 400, $color-text-subtle);
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  &:first-child {
-    &::after {
-      content: '';
-      width: 2px;
-      height: 2px;
-      background-color: $color-text-subtle;
-      border-radius: $radius-pill;
-      margin-inline: $space-8;
-    }
   }
 }
 
@@ -131,6 +123,4 @@
 
 .bottomTitle {
   @include FontBasic(17px, 800, $color-cream);
-
-
 }

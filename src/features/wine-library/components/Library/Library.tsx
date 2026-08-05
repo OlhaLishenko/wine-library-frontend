@@ -7,42 +7,22 @@ import { SearchNameInputLayout } from '@/features/wine-library/components/Search
 import { useScreenWidth } from '@/shared/hooks/useScreenWidth';
 import clsx from 'clsx';
 import styles from './Library.module.scss';
-import { useContext, useEffect } from 'react';
-import { UIModalContext } from '@/features/wine-library/hooks/useUIModalContext';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { loadWineList } from '@/store/Library/wineListSlice';
 import { useWineFilters } from '../../hooks/useWineFilters';
 import { RiseLoader } from 'react-spinners';
-import { getFilterOptionName } from '../FilterItem';
-import { useUiFilters } from '@/shared/hooks/useUiFilters';
-import { WineFilterKey } from '@/shared/types/WineFilters';
 
 export function Library() {
   const location = useLocation();
   const dispatch = useAppDispatch();
-  const { wineList, loading, error } = useAppSelector(
-    (state) => state.wineList
-  );
+  const { loading } = useAppSelector((state) => state.wineList);
   const { isDesktop } = useScreenWidth();
-  const { openFilters, openMenu } = useContext(UIModalContext);
-  const { filters, resetFilters, toggleOption } = useWineFilters();
-  const filterList = useUiFilters();
+  const { filters, resetFilters } = useWineFilters();
 
   useEffect(() => {
     dispatch(loadWineList({ filters, name: filters.name }));
   }, [dispatch, filters]);
-
-  useEffect(() => {
-    if (openFilters || openMenu) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [openFilters, openMenu]);
 
   return (
     <AppLayout>

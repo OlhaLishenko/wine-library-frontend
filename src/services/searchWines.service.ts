@@ -1,4 +1,5 @@
-import { getClient } from '@/api/getClient';
+// import { getClient } from '@/api/getClient';
+import { apiClient } from '@/api/apiClient';
 import { PageableResponse } from '@/shared/types/PageableResponse';
 import { WineType } from '@/shared/types/WineType';
 import { AxiosError } from 'axios';
@@ -8,7 +9,7 @@ export const searchWinesService = async (
   page = 0
 ): Promise<PageableResponse<WineType>> => {
   try {
-    const { data } = await getClient.get<PageableResponse<WineType>>(
+    const { data } = await apiClient.get<PageableResponse<WineType>>(
       '/wines/search',
       { params: { name, page } }
     );

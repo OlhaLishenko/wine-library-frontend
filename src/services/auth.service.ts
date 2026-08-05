@@ -1,3 +1,4 @@
+import { apiClient } from '@/api/apiClient';
 import { authClient } from '@/api/authClient';
 import { AuthResponse } from '@/features/auth/types/AuthResponse';
 import { RegisterData } from '@/features/auth/types/RegisterData';

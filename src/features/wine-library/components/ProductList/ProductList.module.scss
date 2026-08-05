@@ -29,3 +29,7 @@
     grid-template-columns: repeat(3, minmax(0, 340px));
   }
 }
+
+.error {
+  @include FontHeading(24px, 800, $color-text-subtle);
+}

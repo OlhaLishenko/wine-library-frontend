@@ -57,6 +57,17 @@
   }
 }
 
+.narrow {
+  width: fit-content;
+  background: $color-gold;
+  color: $color-bg;
+
+  &:hover:not(:disabled) {
+    background: $color-gold-hover;
+    box-shadow: $shadow-button;
+  }
+}
+
 .filter {
   background: $color-gold-extra-dark;
   border-color: $color-border-strong;

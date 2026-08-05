@@ -6,13 +6,15 @@ import { Filter, FilterValue } from '@/shared/types/Filters';
 import { Checkbox } from '@/features/auth/components/Checkbox/Checkbox';
 import { useScreenWidth } from '@/shared/hooks/useScreenWidth';
 import { useWineFilters } from '../../hooks/useWineFilters';
-import { selectedFilterContext } from '../../hooks/useSelectedFilterContext';
-import { useSearchParams } from 'react-router';
 import { WineFilterKey } from '@/shared/types/WineFilters';
 import { UIModalContext } from '../../hooks/useUIModalContext';
 
-export const getFilterOptionValue = (option: FilterValue): string =>
-  String('id' in option ? option.id : option.code);
+export const getFilterOptionValue = (option: FilterValue): string => {
+  if (typeof option === 'string' || typeof option === 'number') {
+    return String(option);
+  }
+  return String('id' in option ? option.id : option.code);
+};
 
 export const getFilterOptionName = (
   filterList: Filter[],
@@ -36,14 +38,49 @@ const IconControl = ({ isOpen }: { isOpen: boolean }) => {
   return <>{isOpen ? <Icons.Minus /> : <Icons.Plus />}</>;
 };
 
+const OptionItem = ({
+  option,
+  filterItem,
+}: {
+  option: FilterValue;
+  filterItem: Filter;
+}) => {
+  const { toggleOption, filters } = useWineFilters();
+  const { setOpenFilters } = useContext(UIModalContext);
+
+  const optionValue = getFilterOptionValue(option);
+  const optionLabel =
+    typeof option === 'string' || typeof option === 'number'
+      ? String(option)
+      : option.name;
+
+  const isChecked =
+    filters[filterItem.filterName]?.includes(optionValue) ?? false;
+
+  const handleChangeFilter = (option: FilterValue) => {
+    toggleOption(filterItem.filterName, getFilterOptionValue(option));
+    setOpenFilters(false);
+  };
+
+  return (
+    <li key={optionLabel} className={clsx(styles.option)}>
+      <Checkbox
+        value={optionValue}
+        checked={isChecked}
+        onChange={() => handleChangeFilter(option)}
+        id={`${filterItem.filterName}-${optionValue}`}
+        label={optionLabel}
+      />
+    </li>
+  );
+};
+
 type FilterItemType = {
   filterItem: Filter;
 };
 
 export const FilterItem: React.FC<FilterItemType> = ({ filterItem }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { toggleOption, filters } = useWineFilters();
-  const { setOpenFilters } = useContext(UIModalContext);
 
   const columnOptionList =
     filterItem.label === 'Producer' ||
@@ -51,16 +88,6 @@ export const FilterItem: React.FC<FilterItemType> = ({ filterItem }) => {
     filterItem.label === 'Vintage (year)' ||
     filterItem.label === 'Country' ||
     filterItem.label === 'Grape variety';
-
-  const handleChangeFilter = (option: FilterValue) => {
-    toggleOption(filterItem.filterName, getFilterOptionValue(option));
-    setOpenFilters(false);
-  };
-
-  const rawValue = filters[filterItem.filterName];
-  const isChecked = Array.isArray(rawValue)
-    ? rawValue.includes(optionValue)
-    : false;
 
   return (
     <li>
@@ -83,23 +110,13 @@ export const FilterItem: React.FC<FilterItemType> = ({ filterItem }) => {
           [styles.optionListColumn]: columnOptionList,
         })}
       >
-        {filterItem.values.map((option) => {
-          const optionValue = getFilterOptionValue(option);
-          const isChecked =
-            filters[filterItem.filterName]?.includes(optionValue) ?? false;
-
-          return (
-            <li key={option.name} className={clsx(styles.option)}>
-              <Checkbox
-                value={optionValue}
-                checked={isChecked}
-                onChange={() => handleChangeFilter(option)}
-                id={`${filterItem.filterName}-${optionValue}`}
-                label={option.name}
-              />
-            </li>
-          );
-        })}
+        {filterItem.values.map((option) => (
+          <OptionItem
+            key={getFilterOptionValue(option)}
+            option={option}
+            filterItem={filterItem}
+          />
+        ))}
       </ul>
     </li>
   );

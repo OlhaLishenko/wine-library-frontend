@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.scss';
 
-export type ButtonVariant = 'primary' | 'ghost' | 'filter';
+export type ButtonVariant = 'primary' | 'ghost' | 'filter' | 'narrow';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import styles from './ProductCard.module.scss';
 import { WineType } from '@/shared/types/WineType';
 import { getImageUrl } from '@/utility/getImageUrl';
@@ -7,17 +7,50 @@ import { Button } from '@/features/auth/components/Button/Button';
 import { BtnTitle } from '@/shared/components/BtnTitle';
 import { TITLE } from '@/shared/constants/context';
 import { normolizeTitle } from '@/utility/normolizeTitle';
+import { Link } from 'react-router';
+import { ProductCardSubtitle } from '@/shared/components/ProductCardSubtitle/ProductCardSubtitle';
+import { ProductCardTitle } from '@/shared/components/ProductCardTitle/ProductCardTitle';
+import { ScreenContext } from '@/shared/hooks/ScreenContext';
+import { SliderContext } from '@/shared/hooks/SliderContext';
+import clsx from 'clsx';
 
 type ProductCardProps = {
   wineItem: WineType;
+  isSlider?: boolean;
 };
 
-export const ProductCard: React.FC<ProductCardProps> = ({ wineItem }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  wineItem,
+  isSlider = 'false',
+}) => {
   const { alcoholIndicator, alcoholTitle, volumeIndicator } =
     TITLE.library.productCard;
 
+  const slideRef = useRef<HTMLAnchorElement>(null);
+  const { setSlideWidth } = useContext(SliderContext);
+
+  useEffect(() => {
+    const handleResizeSlide = () => {
+      if (slideRef.current) {
+        setSlideWidth(slideRef.current.offsetWidth);
+      }
+    };
+
+    handleResizeSlide();
+
+    window.addEventListener('resize', handleResizeSlide);
+
+    return () => window.removeEventListener('resize', handleResizeSlide);
+  }, [setSlideWidth]);
+
   return (
-    <div className={styles.card}>
+    <Link
+      to={`/wines/${wineItem.id}`}
+      className={clsx(styles.card, {
+        [styles.cardSlider]: isSlider,
+      })}
+      ref={slideRef}
+    >
       <div className={styles.imageContainer}>
         <img
           className={styles.image}
@@ -26,12 +59,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ wineItem }) => {
         />
       </div>
       <div className={styles.productInfo}>
-        <h3 className={styles.title}>{wineItem.name}</h3>
+        <ProductCardTitle name={wineItem.name} />
         <div className={styles.infoContainer}>
-          <div className={styles.subtitle}>
-            <span className={styles.subtitle}>{wineItem.country}</span>
-            <span className={styles.subtitle}>{wineItem.producer}</span>
-          </div>
+          <ProductCardSubtitle wineItem={wineItem} />
           <div className={styles.info}>
             <div className={styles.infoItem}>
               {normolizeTitle(wineItem.sugarType)}
@@ -61,6 +91,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ wineItem }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

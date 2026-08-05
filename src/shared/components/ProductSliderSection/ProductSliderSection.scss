@@ -1,0 +1,32 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.product-slider {
+  // @include Grid-column;
+  @include Content-padding-inline();
+  display: flex;
+  flex-direction: column;
+  gap: $space-32;
+  row-gap: 24px;
+
+
+  @include onDesktop {
+    // padding: 0;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__top {
+    grid-column: 1 / -1;
+
+    &__wrapper {
+      grid-column: 1 / -1;
+      justify-content: space-between;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}

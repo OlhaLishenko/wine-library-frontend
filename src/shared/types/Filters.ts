@@ -12,9 +12,11 @@ export interface FiterObj {
   vintages: Filter;
 }
 
-export type FilterValue = {
-  name: string;
-} & ({ code: string } | { id: number });
+export type FilterValue =
+  | { id: string; name: string }
+  | { code: string; name: string }
+  | string
+  | number;
 
 export type Filter = {
   filterName: WineFilterKey;

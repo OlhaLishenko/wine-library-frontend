@@ -1,0 +1,27 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.slider-product-list {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(5, 300px);
+  flex-direction: row;
+  gap: 16px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  @include onTablet {
+    grid-template-columns: repeat(5, 300px);
+  }
+
+  @include onDesktop {
+    grid-template-columns: repeat(5, 300px);
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,4 +1,5 @@
-import { getClient } from '@/api/getClient';
+import { apiClient } from '@/api/apiClient';
+// import { getClient } from '@/api/getClient';
 import { PageableResponse } from '@/shared/types/PageableResponse';
 import { WineFilters } from '@/shared/types/WineFilters';
 import { WineType } from '@/shared/types/WineType';
@@ -8,7 +9,7 @@ export const getWinesService = async (
   filters: WineFilters
 ): Promise<PageableResponse<WineType>> => {
   try {
-    const { data } = await getClient.get<PageableResponse<WineType>>('/wines', {
+    const { data } = await apiClient.get<PageableResponse<WineType>>('/wines', {
       params: filters,
     });
 

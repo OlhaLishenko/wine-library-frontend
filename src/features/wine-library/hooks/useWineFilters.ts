@@ -28,47 +28,6 @@ export const useWineFilters = () => {
     };
   }, [searchParams]);
 
-  // const getActiveFilters = () => {
-  //   const onlyFilters = filters;
-
-  //   delete filters.page;
-  // };
-
-  // const getActiveFilters = useCallback(
-  //   (filter: {
-  //     filterName: WineFilterKey;
-  //     label: string;
-  //     value: FilterValue;
-  //   }) => {
-  //     const activeFilters =
-  //   },
-  //   [filters]
-  // );
-
-  // const toggleOption = useCallback(
-  //   (filter: {
-  //     filterName: WineFilterKey;
-  //     label: string;
-  //     value: FilterValue;
-  //   }) => {
-  //     const next = new URLSearchParams(searchParams);
-  //     const current = next.getAll(filter.filterName);
-
-  //     next.delete(key);
-
-  //     const updated = current.includes(option)
-  //       ? current.filter((item) => item !== option)
-  //       : [...current, option];
-
-  //     updated.forEach((value) => next.append(key, value));
-
-  //     next.delete('name');
-  //     next.set('page', '0');
-
-  //     setSearchParams(next);
-  //   },
-  //   [searchParams, setSearchParams]
-  // );
   const toggleOption = useCallback(
     (key: WineFilterKey, option: string) => {
       const next = new URLSearchParams(searchParams);

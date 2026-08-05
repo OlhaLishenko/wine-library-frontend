@@ -12,4 +12,5 @@ export type WineType = {
   producer: string;
   grapes: string[];
   imageUrl: string;
+  description: string;
 };

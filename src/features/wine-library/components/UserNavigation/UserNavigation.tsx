@@ -21,19 +21,19 @@ type UserNavigationProps = {};
 
 export const UserNavigation: React.FC<UserNavigationProps> = () => {
   const currentUser = useAppSelector<User | null>((state) => state.currentUser);
-  const { token } = useAppSelector((state) => state.authLogIn);
+  const { accessToken } = useAppSelector((state) => state.authLogIn);
   const { openMenu, setOpenMenu } = useContext(UIModalContext);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (token) {
-      const user: User = getUserInfo(token);
+    if (accessToken) {
+      const user: User = getUserInfo(accessToken);
       dispatch(setCurrentUser(user));
     }
-  }, [token, dispatch]);
+  }, [accessToken, dispatch]);
 
-  console.log('token');
-  console.log(token);
+  console.log('accessToken');
+  console.log(accessToken);
   console.log(currentUser?.fullName);
 
   const signOutCurrentUser = async () => {

@@ -41,9 +41,22 @@ function LoginPage() {
     }
 
     try {
-      await dispatch(logInUser({ email, password })).unwrap();
+      // let userInfo = { email, password };
+
+      // const storagedUserInfo = localStorage.get('user');
+
+      // if (storagedUserInfo) {
+      //   userInfo = {
+      //     email: storagedUserInfo.email,
+      //     password: storagedUserInfo.password,
+      //   };
+      // }
+      const result = await dispatch(logInUser({ email, password })).unwrap();
+      console.log('LOGIN RESULT:', result);
+      // localStorage.setItem("user", JSON.stringify(userInfo));
       navigate('/library');
-    } catch {
+    } catch (err) {
+      console.log('LOGIN ERROR:', err);
       setOpenModal(true);
       return;
     }
