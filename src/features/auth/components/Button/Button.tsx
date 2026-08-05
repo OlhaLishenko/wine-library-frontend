@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from 'react';
 import styles from './Button.module.scss';
 
-export type ButtonVariant = 'primary' | 'ghost';
+export type ButtonVariant = 'primary' | 'ghost' | 'filter' | 'narrow';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -29,7 +29,12 @@ export function Button({
     .join(' ');
 
   return (
-    <button className={className} disabled={disabled || loading} aria-busy={loading} {...rest}>
+    <button
+      className={className}
+      disabled={disabled || loading}
+      aria-busy={loading}
+      {...rest}
+    >
       {loading && <span className={styles.spinner} aria-hidden="true" />}
       <span className={styles.label}>{children}</span>
     </button>

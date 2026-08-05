@@ -7,10 +7,12 @@
 $color-bg: #1F1517; // page / deepest surface
 $color-surface: #1f1517; // panels, cards
 $color-surface-alt: #2a1b1e; // raised elements
+$color-surface-alt: #2a1b1e; // raised elements
 
 $color-gold: #d4af37;
 $color-gold-hover: #e4c558;
 $color-gold-dark: #8a6a16;
+$color-gold-extra-dark: #261C13;
 
 $color-burgundy: #6b1423;
 $color-burgundy-deep: #3b0a14;
@@ -38,15 +40,16 @@ $radius-lg: 16px;
 $radius-pill: 100px;
 
 // --- Spacing (8px system) ------------------------------------------------
-$space-1: 4px;
-$space-2: 8px;
-$space-3: 12px;
-$space-4: 16px;
-$space-5: 20px;
-$space-6: 24px;
-$space-7: 32px;
-$space-8: 40px;
-$space-9: 48px;
+$space-4: 4px;
+$space-8: 8px;
+$space-12: 12px;
+$space-16: 16px;
+$space-20: 20px;
+$space-24: 24px;
+$space-32: 32px;
+$space-40: 40px;
+$space-48: 48px;
+// $space-padding-mobile: 16px;
 
 // --- Elevation -----------------------------------------------------------
 $shadow-panel: 0 24px 60px rgba(0, 0, 0, 0.5);
@@ -54,13 +57,14 @@ $shadow-button: 0 6px 18px rgba(212, 175, 55, 0.25);
 
 // --- Breakpoints ---------------------------------------------------------
 $onMobile: 320px;
-$onTablet: 620px;
-$onDesktop: 1024px;
+$onTablet: 768px;
+$onDesktop: 1200px;
 
 // --- Motion --------------------------------------------------------------
 $transition-fast: 0.18s ease;
 $transition-press: 0.06s ease;
 
 // --- Padding --------------------------------------------------------------
-$padding-inline: 24px;
-$padding-inline-tablet: 33px;
+$padding-mobile: 16px;
+$padding-tablet: 24px;
+$padding-desktop: 40px;

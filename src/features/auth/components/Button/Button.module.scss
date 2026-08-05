@@ -6,7 +6,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: $space-2;
+  gap: $space-8;
   padding: 15px 20px;
   border: 1px solid transparent;
   border-radius: $radius-md;
@@ -55,6 +55,23 @@
   &:hover:not(:disabled) {
     background: rgba(212, 175, 55, 0.08);
   }
+}
+
+.narrow {
+  width: fit-content;
+  background: $color-gold;
+  color: $color-bg;
+
+  &:hover:not(:disabled) {
+    background: $color-gold-hover;
+    box-shadow: $shadow-button;
+  }
+}
+
+.filter {
+  background: $color-gold-extra-dark;
+  border-color: $color-border-strong;
+  color: $color-gold;
 }
 
 .loading .label {

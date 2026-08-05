@@ -2,8 +2,10 @@ import logInbgMobile from './images/log-in/bg-image-mobile.png';
 import logInbgDesktop from './images/log-in/bg-image-desktop.png';
 import createAccbgMobile from './images/create-account/bg-image-mobile.png';
 import createAccbgDesktop from './images/create-account/bg-image-desktop.png';
+import logo from './images/logo.png';
 
 export const images = {
+  logo: logo,
   logIn: {
     logInbgMobile,
     logInbgDesktop,

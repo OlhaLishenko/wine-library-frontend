@@ -1,4 +1,4 @@
-import { Input } from '../Input/Input';
+import { Input } from '../../../../shared/components/Input/Input';
 import { BaseFormInput } from '../BaseFormInput';
 import { AuthError } from '../../hooks/authInputs.context';
 

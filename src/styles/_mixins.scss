@@ -13,10 +13,14 @@
 }
 
 @mixin Content-padding-inline {
-  padding-inline: $padding-inline;
+  padding-inline: $padding-mobile;
 
   @include onTablet {
-    padding-inline: $padding-inline-tablet;
+    padding-inline: $padding-tablet;
+  }
+
+  @include onDesktop {
+    padding-inline: $padding-desktop;
   }
 }
 
@@ -44,4 +48,27 @@
 
 @mixin Hover {
   transition: all 0.2s ease-in-out;
+}
+
+@mixin RoundTitle ($color-title: $color-gold-hover, $color-bg: $color-gold-dark, $color-border: $color-gold) {
+  @include FontBasic(13px, 800, $color-title);
+  padding: 10px 18px;
+  background-color: $color-bg;
+  border-radius: $radius-pill;
+  border: 1px solid $color-border;
+}
+
+@mixin Grid-column() {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 16px;
+
+  @include onTablet() {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  @include onDesktop() {
+    grid-template-columns: repeat(24, 32px);
+    justify-content: center;
+  }
 }

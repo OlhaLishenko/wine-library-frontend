@@ -1,0 +1,127 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.productDetails {}
+
+.imageContainer {
+  display: flex;
+  width: 100%;
+
+  @include onTablet {
+    width: 30%;
+    border: 1px solid $color-gold-dark;
+    border-radius: $radius-lg;
+    overflow: hidden;
+  }
+}
+
+.image {
+  display: flex;
+  width: 100%;
+  object-fit: contain;
+
+  @include onTablet {}
+}
+
+
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+}
+
+.info {
+  @include Content-padding-inline();
+  display: flex;
+  flex-direction: column;
+  gap: $space-20;
+
+  @include onTablet {
+    padding-inline: 0;
+    width: 70%;
+  }
+
+  &Item {
+    display: flex;
+    flex-direction: row;
+    gap: $space-12;
+  }
+
+  &Label {
+    @include RoundTitle($color-cream, $color-burgundy, transparent);
+
+    &:nth-of-type(2) {
+      @include RoundTitle($color-gold, transparent, $color-gold);
+    }
+  }
+}
+
+.aboutSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+
+  @include onTablet {
+    &:last-of-type {
+      width: 70%;
+      padding: $space-12;
+      border: 1px solid $color-text-subtle;
+      border-radius: $radius-lg;
+      align-self: center;
+    }
+  }
+}
+
+.sectionTitle {
+  @include FontHeading(17px, 700, $color-cream);
+}
+
+.container {
+  @include Content-padding-inline();
+  padding-block: $space-24;
+  display: flex;
+  flex-direction: column;
+  gap: $space-32;
+
+  @include onTablet {
+    // flex-direction: row;
+  }
+}
+
+.topWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-32;
+
+  @include onTablet {
+    flex-direction: row;
+    @include Content-padding-inline();
+  }
+}
+
+.propertyContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: $space-12;
+
+  @include onTablet {
+    // flex-direction: column;
+  }
+}
+
+.propertyItem {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+  align-items: center;
+}
+
+.propertyText {
+  @include FontBasic(14px, 400, $color-text-muted);
+}
+
+.propertyValue {
+  @include FontBasic(14px, 500, $color-cream);
+}

@@ -1,5 +1,5 @@
 import { PasswordInput } from '../PasswordInput/PasswordInput';
-import { Input } from '../Input/Input';
+import { Input } from '../../../../shared/components/Input/Input';
 import { useContext, useRef, useState } from 'react';
 import { AuthError, AuthInputsContext } from '../../hooks/authInputs.context';
 

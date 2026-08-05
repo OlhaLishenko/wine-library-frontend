@@ -1,6 +1,6 @@
 import { bgImageLogin } from '@/assets/auth.images';
 import { AuthLayout } from '../../layouts/AuthLayout/AuthLayout';
-import { QUOTES, TITLE } from '@/constants/context';
+import { QUOTES, TITLE } from '@/shared/constants/context';
 import { AuthFormLayout } from '@/features/auth/components/AuthFormLayout/AuthFormLayout';
 import { LoginFormElements } from '@/features/auth/components/LoginFormElements/LoginFormElements';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -11,7 +11,6 @@ import {
   AuthInputsContextProvider,
 } from '@/features/auth/hooks/authInputs.context';
 import { useContext } from 'react';
-import { ModalScreen } from '@/features/auth/components/ModalScreen';
 import {
   ModalScreenContext,
   ModalScreenContextProvider,
@@ -30,9 +29,9 @@ export function LoginPageWrapper() {
 function LoginPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { loading, error } = useAppSelector((state) => state.authLogIn);
+  const { loading } = useAppSelector((state) => state.authLogIn);
   const { email, password, validate, errors } = useContext(AuthInputsContext);
-  const { openModal, setOpenModal } = useContext(ModalScreenContext);
+  const { setOpenModal } = useContext(ModalScreenContext);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,23 +41,22 @@ function LoginPage() {
     }
 
     try {
-      await dispatch(logInUser({ email, password })).unwrap();
-      navigate('/library');
-    } catch {
-      setOpenModal(true);
-      return;
-    }
-  };
+      // let userInfo = { email, password };
 
-  const handleResent = async () => {
-    if (!validate()) {
-      return;
-    }
+      // const storagedUserInfo = localStorage.get('user');
 
-    try {
-      await dispatch(logInUser({ email, password })).unwrap();
+      // if (storagedUserInfo) {
+      //   userInfo = {
+      //     email: storagedUserInfo.email,
+      //     password: storagedUserInfo.password,
+      //   };
+      // }
+      const result = await dispatch(logInUser({ email, password })).unwrap();
+      console.log('LOGIN RESULT:', result);
+      // localStorage.setItem("user", JSON.stringify(userInfo));
       navigate('/library');
-    } catch {
+    } catch (err) {
+      console.log('LOGIN ERROR:', err);
       setOpenModal(true);
       return;
     }
@@ -82,9 +80,6 @@ function LoginPage() {
           errors={errors}
         />
       </AuthFormLayout>
-      {openModal && error && (
-        <ModalScreen message={error} onResent={handleResent} />
-      )}
     </AuthLayout>
   );
 }

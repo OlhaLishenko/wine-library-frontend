@@ -1,0 +1,96 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.optionList {
+  @include FontHeading(14px, 400, $color-text-muted);
+  display: flex;
+  flex-direction: row;
+  gap: $space-12;
+  max-height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+  scrollbar-width: none;
+  padding-top: $space-12;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none;
+  }
+
+  @include onDesktop {
+    flex-direction: column;
+    margin-block: $space-12;
+    padding-top: 0;
+  }
+}
+
+.optionListColumn {
+  flex-direction: column;
+}
+
+.open {
+  max-height: 300px;
+  transform: translateY(0);
+  opacity: 1;
+
+  @include onDesktop {
+    overflow-y: scroll;
+  }
+}
+
+.option {
+  padding: 8px 12px;
+  border-radius: $radius-pill;
+  border: 1px solid $color-border-strong;
+
+  @include onDesktop {
+    border: none;
+  }
+}
+
+.active {
+  background-color: $color-burgundy;
+}
+
+.icon {
+  width: 12px;
+  height: 12px;
+  fill: currentColor,
+}
+
+.filterItem {
+  @include FontHeading(16px, 800, $color-text-muted);
+  display: flex;
+  flex-direction: row;
+  gap: $space-8;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.filterBtn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-bottom: 10px;
+  position: relative;
+  transition: all 500ms ease-in-out;
+
+  &::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: $color-text-subtle;
+    opacity: 0.2;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.control {
+  @include onDesktop {
+    transform: rotate(-90deg);
+  }
+}

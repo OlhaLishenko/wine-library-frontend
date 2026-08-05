@@ -1,0 +1,6 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.sectionText {
+  @include FontBasic(14px, 400, $color-text-subtle);
+}

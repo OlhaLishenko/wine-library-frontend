@@ -1,0 +1,70 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.horizontalMode {
+  flex-direction: column;
+  gap: $space-12;
+  font-family: $font-body;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-8;
+  color: inherit;
+}
+
+.navItemAside {
+  display: flex;
+  flex-direction: row;
+}
+
+.active {
+  color: $color-gold !important;
+}
+
+.activeAside {
+  color: $color-gold !important;
+  background-color: $color-border;
+}
+
+.navLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-4;
+  color: $color-text-subtle;
+}
+
+.navLinkAside {
+  border-radius: $radius-md;
+  width: 100%;
+  align-items: flex-start;
+  padding: 12px 0 12px 12px;
+  color: $color-cream;
+}
+
+.navTitle {
+  @include FontBasic(10px, 400);
+  color: inherit;
+}
+
+.horizontalModeTitle {
+  @include FontBasic(16px, 400);
+  color: inherit;
+}
+
+.icon {
+  fill: currentColor;
+}

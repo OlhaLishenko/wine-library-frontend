@@ -1,0 +1,637 @@
+{
+  "wineTypes": {
+    "label": "Wine type",
+    "values": [
+      {
+        "code": "DESSERT",
+        "name": "Dessert"
+      },
+      {
+        "code": "FORTIFIED",
+        "name": "Fortified"
+      },
+      {
+        "code": "ORANGE",
+        "name": "Orange"
+      },
+      {
+        "code": "RED",
+        "name": "Red"
+      },
+      {
+        "code": "ROSE",
+        "name": "Rosé"
+      },
+      {
+        "code": "SPARKLING",
+        "name": "Sparkling"
+      },
+      {
+        "code": "WHITE",
+        "name": "White"
+      }
+    ]
+  },
+  "sugarTypes": {
+    "label": "Sugar content",
+    "values": [
+      {
+        "code": "DRY",
+        "name": "Dry"
+      },
+      {
+        "code": "OFF_DRY",
+        "name": "Off-dry"
+      },
+      {
+        "code": "SEMI_SWEET",
+        "name": "Semi-sweet"
+      },
+      {
+        "code": "SWEET",
+        "name": "Sweet"
+      }
+    ]
+  },
+  "countryIds": {
+    "label": "Country",
+    "values": [
+      {
+        "id": 1,
+        "name": "Argentina"
+      },
+      {
+        "id": 2,
+        "name": "Australia"
+      },
+      {
+        "id": 3,
+        "name": "Canada"
+      },
+      {
+        "id": 4,
+        "name": "Chile"
+      },
+      {
+        "id": 5,
+        "name": "France"
+      },
+      {
+        "id": 6,
+        "name": "Georgia"
+      },
+      {
+        "id": 7,
+        "name": "Germany"
+      },
+      {
+        "id": 8,
+        "name": "Italy"
+      },
+      {
+        "id": 9,
+        "name": "Moldova"
+      },
+      {
+        "id": 10,
+        "name": "New Zealand"
+      },
+      {
+        "id": 11,
+        "name": "Portugal"
+      },
+      {
+        "id": 12,
+        "name": "Spain"
+      },
+      {
+        "id": 13,
+        "name": "USA"
+      },
+      {
+        "id": 14,
+        "name": "Ukraine"
+      }
+    ]
+  },
+  "regionIds": {
+    "label": "Region",
+    "values": [
+      {
+        "id": 1,
+        "name": "Alsace"
+      },
+      {
+        "id": 2,
+        "name": "Alto Adige"
+      },
+      {
+        "id": 3,
+        "name": "California (Napa/Sonoma)"
+      },
+      {
+        "id": 4,
+        "name": "California (North Coast: Napa, Sonoma, Mendocino)"
+      },
+      {
+        "id": 5,
+        "name": "Champagne (Montagne de Reims, Vallée de la Marne, Côte des Blancs)"
+      },
+      {
+        "id": 6,
+        "name": "Chianti Classico, Tuscany"
+      },
+      {
+        "id": 7,
+        "name": "Codri (forest reserve near Cricova and Old Orhei)"
+      },
+      {
+        "id": 8,
+        "name": "Côtes de Provence (Esclans Valley)"
+      },
+      {
+        "id": 9,
+        "name": "Douro Valley"
+      },
+      {
+        "id": 10,
+        "name": "Jerez (Jerez de la Frontera)"
+      },
+      {
+        "id": 11,
+        "name": "Kakheti (Alazani Valley, Kvareli district)"
+      },
+      {
+        "id": 12,
+        "name": "Kakheti (village of Tibaani, Signagi)"
+      },
+      {
+        "id": 13,
+        "name": "Lombardy (Franciacorta, Erbusco, Province of Brescia)"
+      },
+      {
+        "id": 14,
+        "name": "Margaux, Bordeaux"
+      },
+      {
+        "id": 15,
+        "name": "Marlborough (Wairau Valley), South Island"
+      },
+      {
+        "id": 16,
+        "name": "Mendoza (high-altitude vineyards)"
+      },
+      {
+        "id": 17,
+        "name": "Montilla-Moriles (Moriles-Alto zone)"
+      },
+      {
+        "id": 18,
+        "name": "Mosel"
+      },
+      {
+        "id": 19,
+        "name": "Mykolaiv region (Cape Beykush)"
+      },
+      {
+        "id": 20,
+        "name": "Odesa region (Danube Bessarabia)"
+      },
+      {
+        "id": 21,
+        "name": "Odesa region (Shabo)"
+      },
+      {
+        "id": 22,
+        "name": "Ontario (Niagara Peninsula)"
+      },
+      {
+        "id": 23,
+        "name": "Piedmont (Langhe, Barolo commune)"
+      },
+      {
+        "id": 24,
+        "name": "Priorat (Gratallops)"
+      },
+      {
+        "id": 25,
+        "name": "Purcari (Ştefan Vodă district)"
+      },
+      {
+        "id": 26,
+        "name": "Racha (Khvanchkara microzone, Racha-Lechkhumi)"
+      },
+      {
+        "id": 27,
+        "name": "Rapel Valley (Peumo, north bank of the Cachapoal River)"
+      },
+      {
+        "id": 28,
+        "name": "Rioja (Rioja Alavesa)"
+      },
+      {
+        "id": 29,
+        "name": "Rioja (Rioja Alta)"
+      },
+      {
+        "id": 30,
+        "name": "Rías Baixas (Salnés Valley)"
+      },
+      {
+        "id": 31,
+        "name": "Sardinia (Trexenta hills, near Cagliari)"
+      },
+      {
+        "id": 32,
+        "name": "Sauternes (on the border of the Sauternes and Fargues communes)"
+      },
+      {
+        "id": 33,
+        "name": "Sicily"
+      },
+      {
+        "id": 34,
+        "name": "South Australia (multi-regional blend: Coonawarra, Barossa Valley, McLaren Vale and others)"
+      },
+      {
+        "id": 35,
+        "name": "Veneto (Valpolicella Classico)"
+      },
+      {
+        "id": 36,
+        "name": "Veneto (provinces of Treviso and Belluno)"
+      }
+    ]
+  },
+  "producerIds": {
+    "label": "Producer",
+    "values": [
+      {
+        "id": 1,
+        "name": "Allegrini"
+      },
+      {
+        "id": 2,
+        "name": "Argiolas"
+      },
+      {
+        "id": 3,
+        "name": "Beringer Vineyards"
+      },
+      {
+        "id": 4,
+        "name": "Beykush family winery"
+      },
+      {
+        "id": 5,
+        "name": "Bodega Catena Zapata"
+      },
+      {
+        "id": 6,
+        "name": "Bodegas CVNE"
+      },
+      {
+        "id": 7,
+        "name": "Bodegas Emilio Lustau"
+      },
+      {
+        "id": 8,
+        "name": "Bodegas Toro Albalá"
+      },
+      {
+        "id": 9,
+        "name": "Ca' del Bosco"
+      },
+      {
+        "id": 10,
+        "name": "Château Margaux"
+      },
+      {
+        "id": 11,
+        "name": "Château Purcari"
+      },
+      {
+        "id": 12,
+        "name": "Château Rieussec"
+      },
+      {
+        "id": 13,
+        "name": "Château d'Esclans"
+      },
+      {
+        "id": 14,
+        "name": "Clos Mogador"
+      },
+      {
+        "id": 15,
+        "name": "Cloudy Bay Vineyards"
+      },
+      {
+        "id": 16,
+        "name": "Concha y Toro"
+      },
+      {
+        "id": 17,
+        "name": "Cricova"
+      },
+      {
+        "id": 18,
+        "name": "Herederos del Marqués de Riscal"
+      },
+      {
+        "id": 19,
+        "name": "Inniskillin"
+      },
+      {
+        "id": 20,
+        "name": "Kolonist"
+      },
+      {
+        "id": 21,
+        "name": "Maison Trimbach"
+      },
+      {
+        "id": 22,
+        "name": "Marchesi di Barolo"
+      },
+      {
+        "id": 23,
+        "name": "Not specified"
+      },
+      {
+        "id": 24,
+        "name": "Pazo Señorans"
+      },
+      {
+        "id": 25,
+        "name": "Penfolds"
+      },
+      {
+        "id": 26,
+        "name": "Pheasant's Tears"
+      },
+      {
+        "id": 27,
+        "name": "Planeta"
+      },
+      {
+        "id": 28,
+        "name": "Santa Margherita"
+      },
+      {
+        "id": 29,
+        "name": "Schramsberg Vineyards"
+      },
+      {
+        "id": 30,
+        "name": "Shabo"
+      },
+      {
+        "id": 31,
+        "name": "Veuve Clicquot"
+      },
+      {
+        "id": 32,
+        "name": "W. & J. Graham's"
+      }
+    ]
+  },
+  "grapeIds": {
+    "label": "Grape variety",
+    "values": [
+      {
+        "id": 1,
+        "name": "Albariño"
+      },
+      {
+        "id": 2,
+        "name": "Aleksandrouli"
+      },
+      {
+        "id": 3,
+        "name": "Cabernet Franc"
+      },
+      {
+        "id": 4,
+        "name": "Cabernet Sauvignon"
+      },
+      {
+        "id": 5,
+        "name": "Carignan"
+      },
+      {
+        "id": 6,
+        "name": "Carménère"
+      },
+      {
+        "id": 7,
+        "name": "Chardonnay"
+      },
+      {
+        "id": 8,
+        "name": "Cinsault"
+      },
+      {
+        "id": 9,
+        "name": "Corvina"
+      },
+      {
+        "id": 10,
+        "name": "Garnacha"
+      },
+      {
+        "id": 11,
+        "name": "Gewürztraminer"
+      },
+      {
+        "id": 12,
+        "name": "Glera"
+      },
+      {
+        "id": 13,
+        "name": "Grenache"
+      },
+      {
+        "id": 14,
+        "name": "Malbec"
+      },
+      {
+        "id": 15,
+        "name": "Mazuelo"
+      },
+      {
+        "id": 16,
+        "name": "Merlot"
+      },
+      {
+        "id": 17,
+        "name": "Mourvèdre"
+      },
+      {
+        "id": 18,
+        "name": "Mujuretuli"
+      },
+      {
+        "id": 19,
+        "name": "Muscat Ottonel"
+      },
+      {
+        "id": 20,
+        "name": "Nebbiolo"
+      },
+      {
+        "id": 21,
+        "name": "Nero d'Avola"
+      },
+      {
+        "id": 22,
+        "name": "Palomino"
+      },
+      {
+        "id": 23,
+        "name": "Pedro Ximénez"
+      },
+      {
+        "id": 24,
+        "name": "Petit Verdot"
+      },
+      {
+        "id": 25,
+        "name": "Pinot Grigio"
+      },
+      {
+        "id": 26,
+        "name": "Pinot Meunier"
+      },
+      {
+        "id": 27,
+        "name": "Pinot Nero"
+      },
+      {
+        "id": 28,
+        "name": "Pinot Noir"
+      },
+      {
+        "id": 29,
+        "name": "Rara Neagră"
+      },
+      {
+        "id": 30,
+        "name": "Rhine Riesling"
+      },
+      {
+        "id": 31,
+        "name": "Riesling"
+      },
+      {
+        "id": 32,
+        "name": "Rkatsiteli"
+      },
+      {
+        "id": 33,
+        "name": "Rolle"
+      },
+      {
+        "id": 34,
+        "name": "Rondinella"
+      },
+      {
+        "id": 35,
+        "name": "Sangiovese"
+      },
+      {
+        "id": 36,
+        "name": "Saperavi"
+      },
+      {
+        "id": 37,
+        "name": "Sauvignon Blanc"
+      },
+      {
+        "id": 38,
+        "name": "Shiraz"
+      },
+      {
+        "id": 39,
+        "name": "Syrah"
+      },
+      {
+        "id": 40,
+        "name": "Sémillon"
+      },
+      {
+        "id": 41,
+        "name": "Telti-Kuruk"
+      },
+      {
+        "id": 42,
+        "name": "Tempranillo"
+      },
+      {
+        "id": 43,
+        "name": "Tinta Barroca"
+      },
+      {
+        "id": 44,
+        "name": "Tinta Cão"
+      },
+      {
+        "id": 45,
+        "name": "Tinta Roriz"
+      },
+      {
+        "id": 46,
+        "name": "Touriga Franca"
+      },
+      {
+        "id": 47,
+        "name": "Touriga Nacional"
+      },
+      {
+        "id": 48,
+        "name": "Vermentino"
+      },
+      {
+        "id": 49,
+        "name": "Vidal"
+      },
+      {
+        "id": 50,
+        "name": "Zinfandel"
+      }
+    ]
+  },
+  "agingTypes": {
+    "label": "Aging",
+    "values": [
+      {
+        "code": "BOTTLE_LEES",
+        "name": "Bottle (lees)"
+      },
+      {
+        "code": "OAK_BARREL",
+        "name": "Oak barrel"
+      },
+      {
+        "code": "QVEVRI",
+        "name": "Qvevri"
+      },
+      {
+        "code": "SOLERA",
+        "name": "Solera"
+      },
+      {
+        "code": "UNAGED",
+        "name": "Unaged"
+      }
+    ]
+  },
+  "volumes": {
+    "label": "Bottle volume (L)",
+    "values": ["0.375L", "0.75L"]
+  },
+  "vintages": {
+    "label": "Vintage (year)",
+    "values": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2025]
+  }
+}

@@ -1,0 +1,7 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.btnTitle {
+  @include FontBasic(13px, 600);
+  color: inherit;
+}

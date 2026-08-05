@@ -1,0 +1,26 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.topNav {
+  @include Content-padding-inline();
+  display: flex;
+  flex-direction: row;
+  gap: $space-12;
+  align-items: center;
+  padding-block: $space-20;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  fill: $color-gold;
+  transform: rotate(90deg);
+}
+
+.link {
+  @include FontBasic(14px, 400, $color-text-subtle);
+}
+
+.linkActive {
+  @include FontBasic(14px, 400, $color-cream);
+}

@@ -1,0 +1,21 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.subtitle {
+  @include FontBasic(13px, 400, $color-text-subtle);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &:first-child {
+    &::after {
+      content: '';
+      width: 2px;
+      height: 2px;
+      background-color: $color-text-subtle;
+      border-radius: $radius-pill;
+      margin-inline: $space-8;
+    }
+  }
+}

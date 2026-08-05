@@ -1,0 +1,126 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.card {
+  background-color: $color-surface-alt;
+  gap: $space-12;
+  width: 100%;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-md;
+  overflow: hidden;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+  overflow: hidden;
+
+  user-select: none;
+  scroll-snap-align: start;
+
+  border-radius: 16px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.277);
+    cursor: pointer;
+  }
+
+  @include onTablet {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+.cardSlider {
+  margin-left: 16px;
+  transition: none;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+    cursor: pointer;
+  }
+}
+
+.imageContainer {
+  grid-row: span 2;
+  display: flex;
+  overflow: hidden;
+
+
+  &:hover .image {
+    transform: scale(1.06);
+  }
+}
+
+.image {
+  display: flex;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+  padding-inline: 16px;
+  padding-bottom: 20px;
+  grid-row: 3/4;
+  justify-content: space-between;
+
+  @include onTablet {
+    justify-content: space-evenly;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  gap: $space-12;
+  margin-bottom: 10px
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.infoItem {
+  @include FontBasic(13px, 800, $color-gold-hover);
+  padding: 10px 18px;
+  background-color: $color-gold-dark;
+  border-radius: $radius-pill;
+  border: 1px solid $color-gold;
+}
+
+.bottomInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: $space-12;
+}
+
+.bottomInfoItem {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+
+  &:first-of-type .bottomTitle {
+    color: $color-gold;
+  }
+}
+
+.bottomTitle {
+  @include FontBasic(17px, 800, $color-cream);
+}
