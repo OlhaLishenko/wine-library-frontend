@@ -28,7 +28,7 @@ export function Logo({
             textAlign: titleMode === 'center' ? 'center' : 'left',
           }}
         >
-          <span className={styles.title}>Dim Vyna</span>
+          <span className={styles.title}>Dim Vyna (V-2)</span>
           <span className={styles.subtitle}>Discover.Collect.Remember</span>
         </div>
       )}
