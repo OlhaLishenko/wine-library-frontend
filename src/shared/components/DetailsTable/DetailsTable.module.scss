@@ -1,0 +1,38 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.tableWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: $space-12;
+  justify-content: space-between;
+  position: relative;
+  padding-bottom: $space-12;
+
+  &::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: $color-text-subtle;
+    position: absolute;
+    bottom: 0;
+  }
+
+  &:last-of-type::after {
+    display: none;
+  }
+}
+
+.title {
+  @include FontBasic(16px, 400, $color-text-muted);
+}
+
+.value {
+  @include FontBasic(16px, 400, $color-cream);
+}

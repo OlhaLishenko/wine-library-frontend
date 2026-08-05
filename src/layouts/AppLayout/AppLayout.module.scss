@@ -1,0 +1,19 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.appLayout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.appLayoutContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include onDesktop {
+    margin-bottom: 50px;
+  }
+}

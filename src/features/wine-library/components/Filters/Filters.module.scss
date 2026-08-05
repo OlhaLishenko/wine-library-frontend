@@ -1,0 +1,37 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.filterBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: $space-12;
+}
+
+.iconContainer {
+  display: flex;
+  flex-direction: row;
+  gap: $space-4;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
+}
+
+.btnTitle {
+  @include FontBasic(12px, 600);
+  color: inherit;
+}
+
+.light {
+  fill: $color-cream;
+  color: $color-cream;
+}
+
+.dark {
+  fill: $color-gold;
+  color: $color-gold;
+}

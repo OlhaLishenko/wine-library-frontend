@@ -1,0 +1,8 @@
+@use '@/styles/variables' as *;
+
+$images: (
+  'bg-mobile': url('@/assets/images/logIn/bg-image-mobile.png'),
+  'bg-tablet': url('@/assets/images/logIn/bg-image-tablet.png'),
+  'bg-desktop': url('@/assets/images/logIn/bg-image-desktop.png'),
+  'overlay': linear-gradient(to bottom, transparent 50%, $color-surface 100%),
+);

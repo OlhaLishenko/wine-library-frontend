@@ -1,0 +1,41 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.filterAsideMenu {
+  display: flex;
+  height: stretch;
+  background-color: $color-surface-alt;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding-block: $padding-mobile;
+  position: fixed;
+  border: 1px solid $color-border;
+  border-top-left-radius: $radius-lg;
+  border-top-right-radius: $radius-lg;
+  width: 100%;
+  top: 90px;
+  transition: all 0.8s cubic-bezier(0.83, 0, 0.17, 1);
+  transform: translateY(100%);
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none;
+  }
+
+  @include onDesktop {
+    grid-column: 1/2;
+  }
+}
+
+.isActive {
+  transform: translateY(0);
+}
+
+.filterAsideFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  margin-top: $space-20;
+}

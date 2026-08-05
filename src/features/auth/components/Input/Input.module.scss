@@ -1,0 +1,82 @@
+@use '@/styles/variables' as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.label {
+  color: $color-text-muted;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    border-color: $color-border-hover;
+  }
+
+  &:focus-within {
+    border-color: $color-gold;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+  }
+}
+
+.hasError {
+  border-color: $color-error;
+
+  &:focus-within {
+    border-color: $color-error;
+    box-shadow: 0 0 0 3px rgba(229, 72, 77, 0.18);
+  }
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent;
+  color: $color-cream;
+  font-family: $font-body;
+  font-size: 14px;
+  outline: none;
+}
+
+&::placeholder {
+  color: $color-text-subtle;
+}
+
+&:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.trailing {
+  display: flex;
+  align-items: center;
+  padding-right: $space-2;
+}
+
+.error {
+  margin: 0;
+  color: $color-error;
+  font-size: 12px;
+}
+
+.input:global(:-webkit-autofill) {
+  -webkit-box-shadow: 0 0 0 1000px $color-gold inset !important;
+}

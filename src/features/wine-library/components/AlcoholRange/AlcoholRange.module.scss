@@ -1,0 +1,135 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.wrapper {
+  width: 100%;
+  max-width: 420px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.title {
+  @include FontHeading(16px, 800, $color-text-muted);
+}
+
+.collapseBtn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+
+  &:hover {
+    color: #f5f0e8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-gold;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+.sliderTrack {
+  position: relative;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 2px;
+  background: $color-gold-dark;
+}
+
+.railFill {
+  position: absolute;
+  height: 3px;
+  border-radius: 2px;
+  background: $color-gold;
+}
+
+.input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: 0;
+  height: 28px;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  pointer-events: none;
+
+  &::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 3px;
+  }
+
+  &::-moz-range-track {
+    background: transparent;
+    height: 3px;
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    pointer-events: auto;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: $color-gold;
+    border: none;
+    cursor: grab;
+    margin-top: -6.5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.15s ease;
+  }
+
+  &::-moz-range-thumb {
+    pointer-events: auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $color-gold;
+    border: none;
+    cursor: grab;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.15s ease;
+  }
+
+  &:active::-webkit-slider-thumb,
+  &:focus-visible::-webkit-slider-thumb {
+    cursor: grabbing;
+    box-shadow: 0 0 0 6px rgba(217, 168, 57, 0.25);
+  }
+
+  &:active::-moz-range-thumb,
+  &:focus-visible::-moz-range-thumb {
+    cursor: grabbing;
+    box-shadow: 0 0 0 6px rgba(217, 168, 57, 0.25);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: $color-text-muted;
+  font-size: 15px;
+}

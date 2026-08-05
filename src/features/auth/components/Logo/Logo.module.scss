@@ -1,0 +1,29 @@
+@use '@/styles/variables' as *;
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3;
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid $color-gold;
+  border-radius: $radius-md;
+  color: $color-gold;
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.wordmark {
+  color: $color-cream;
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: 18px;
+}

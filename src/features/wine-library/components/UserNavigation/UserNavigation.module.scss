@@ -1,0 +1,77 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.userMenu {
+  display: flex;
+  height: 100vh;
+  background-color: $color-surface;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding-block: 32px;
+  position: fixed;
+  border: 1px solid $color-border;
+  border-top-left-radius: $radius-lg;
+  border-bottom-left-radius: $radius-lg;
+  overflow: hidden;
+  width: 90%;
+  right: 0;
+  transition: all 0.8s cubic-bezier(0.83, 0, 0.17, 1);
+  transform: translateX(100%);
+}
+
+.isActive {
+  transform: translateX(0);
+}
+
+.userMenuContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $space-32;
+}
+
+// .userInfoWrapper {
+//   display: flex;
+//   padding-bottom: $space-32;
+//   position: relative;
+
+//   &::after {
+//     content: '';
+//     height: 1px;
+//     width: 100%;
+//     background-color: $color-border-strong;
+//     position: absolute;
+//     bottom: 0;
+//   }
+// }
+
+// .userInfoContainer {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   gap: $space-16;
+//   border: 1px solid $color-border;
+//   padding: 10px;
+//   border-radius: $radius-md;
+//   background-color: $color-surface-alt;
+//   width: 100%;
+//   margin-inline: $padding-mobile;
+// }
+
+// .userInfo {
+//   @include FontBasic(14px, 400, $color-text-subtle);
+//   display: flex;
+//   flex-direction: column;
+//   gap: $space-4;
+// }
+
+// .userName {
+//   @include FontBasic(14px, 600, $color-cream);
+// }
+
+.separator {
+  display: flex;
+  height: 1px;
+  width: 100%;
+  background-color: $color-border-strong;
+}

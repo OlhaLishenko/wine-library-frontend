@@ -1,0 +1,51 @@
+@use './styles/global.scss' as *;
+@use './styles/fonts.scss' as *;
+@use './styles/mixins.scss' as *;
+@use './styles/variables.scss' as *;
+
+:root {
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+iframe {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.container {
+  @include Content-padding-inline;
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.icon {
+  fill: currentColor;
+
+  @include onDesktop {
+    width: 30px;
+    height: 30px;
+  }
+
+  &--small {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.sectionContainer {
+  display: flex;
+  flex-direction: row;
+  gap: $space-8;
+}

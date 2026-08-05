@@ -1,0 +1,58 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+  width: 100%;
+
+  @include onTablet {
+    min-width: 420px;
+  }
+
+  @include onDesktop {
+    min-width: 380px;
+  }
+}
+
+.header {
+  margin-bottom: $space-8;
+  text-align: center;
+}
+
+.title {
+  @include FontHeading (24px, 800);
+  margin: 0 0 $space-8;
+  line-height: 1.1;
+
+  @include onTablet {
+    @include FontHeading (28px, 800);
+  }
+
+  @include onDesktop {
+    @include FontHeading (30px, 800);
+  }
+}
+
+.subtitle {
+  @include FontBasic (14px, 400, $color-text-muted);
+  margin: 0;
+}
+
+.formError {
+  @include FontBasic (13px, 500, $color-error);
+  margin: 0;
+  text-align: center;
+}
+
+.signup {
+  margin: $space-8 0 0;
+  text-align: center;
+  color: $color-text-muted;
+  font-size: 13px;
+}
+
+.signupLink {
+  font-weight: 600;
+}

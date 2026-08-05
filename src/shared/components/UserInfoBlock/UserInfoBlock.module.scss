@@ -1,0 +1,57 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.userInfoWrapper {
+  display: flex;
+  padding-bottom: $space-32;
+  position: relative;
+
+  @include onDesktop {
+    padding-bottom: 0;
+  }
+
+  &::after {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: $color-border-strong;
+    position: absolute;
+    bottom: 0;
+
+    @include onDesktop {
+      display: none;
+    }
+  }
+}
+
+.userInfoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $space-16;
+  border: 1px solid $color-border;
+  padding: 10px;
+  border-radius: $radius-md;
+  background-color: $color-surface-alt;
+  width: 100%;
+  margin-inline: $padding-mobile;
+
+  @include onDesktop {
+    border-radius: $radius-pill;
+  }
+}
+
+.userInfo {
+  @include FontBasic(14px, 400, $color-text-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  @include onDesktop {
+    padding-left: $space-16;
+  }
+}
+
+.userName {
+  @include FontBasic(14px, 600, $color-cream);
+}

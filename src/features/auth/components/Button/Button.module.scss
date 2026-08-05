@@ -1,0 +1,94 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-8;
+  padding: 15px 20px;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    box-shadow $transition-fast,
+    opacity $transition-fast,
+    transform $transition-press;
+
+  @include focus-ring;
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.primary {
+  background: $color-gold;
+  color: $color-bg;
+
+  &:hover:not(:disabled) {
+    background: $color-gold-hover;
+    box-shadow: $shadow-button;
+  }
+}
+
+.ghost {
+  background: transparent;
+  color: $color-gold;
+  border-color: $color-border-strong;
+
+  &:hover:not(:disabled) {
+    background: rgba(212, 175, 55, 0.08);
+  }
+}
+
+.narrow {
+  width: fit-content;
+  background: $color-gold;
+  color: $color-bg;
+
+  &:hover:not(:disabled) {
+    background: $color-gold-hover;
+    box-shadow: $shadow-button;
+  }
+}
+
+.filter {
+  background: $color-gold-extra-dark;
+  border-color: $color-border-strong;
+  color: $color-gold;
+}
+
+.loading .label {
+  opacity: 0.7;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(23, 15, 16, 0.35);
+  border-top-color: $color-bg;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

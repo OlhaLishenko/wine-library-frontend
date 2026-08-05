@@ -1,0 +1,13 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.detailsWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: $space-12;
+  flex-wrap: wrap;
+}
+
+.item {
+  @include RoundTitle($color-gold, transparent, $color-gold)
+}

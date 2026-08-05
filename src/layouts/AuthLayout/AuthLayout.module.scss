@@ -1,0 +1,107 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+@use './_logIn.variables.scss/index.scss' as *;
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $color-surface;
+  position: relative;
+  justify-content: start;
+  align-items: center;
+
+  @include onDesktop {
+    flex-direction: row;
+    justify-content: normal;
+  }
+}
+
+.disabled {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  min-height: 160px;
+  overflow: hidden;
+  background-image:
+    map-get($images, 'overlay'),
+    var(--bg-desktop);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @include onTablet {
+    justify-content: flex-end;
+    min-height: 260px;
+    padding: $space-12;
+    background-image: map-get($images, 'overlay'), var(--bg-tablet);
+  }
+
+  @include onDesktop {
+    min-height: 100vh;
+    padding: $space-40;
+    background-image: map-get($images, 'overlay'), var(--bg-desktop);
+  }
+}
+
+.quote {
+  @include FontHeading(20px, 700);
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 26ch;
+  line-height: 1.4;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  display: none;
+
+  @include onTablet {
+    @include FontHeading(15px, 600);
+    display: block;
+  }
+
+  @include onDesktop {
+    @include FontHeading(22px, 600);
+  }
+}
+
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-24;
+  background: $color-surface;
+  padding-bottom: 80px;
+
+  @include onTablet {
+    padding: $space-40;
+    width: fit-content;
+    margin-inline: auto;
+  }
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: $space-24;
+
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+  width: -webkit-fill-available;
+
+  @include onDesktop {
+    justify-content: center;
+  }
+}
