@@ -72,7 +72,7 @@ export const questions: SommelierQuestion[] = [
     kind: 'multi',
     eyebrow: 'The table',
     title: 'What are you drinking with?',
-    subtitle: 'Choose any that apply — or none if it’s just the wine.',
+    subtitle: `Choose any that apply — or none if it’s just the wine.`,
     options: [
       { value: 'meat', label: 'Red meat' },
       { value: 'fishSeafood', label: 'Fish & seafood' },
