@@ -1,6 +1,10 @@
 @use '@/styles/variables' as *;
 @use '@/styles/mixins' as *;
 
+.labelFullWidth {
+  width: 100%;
+}
+
 .button {
   position: relative;
   display: inline-flex;

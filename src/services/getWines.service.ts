@@ -1,5 +1,4 @@
 import { apiClient } from '@/api/apiClient';
-// import { getClient } from '@/api/getClient';
 import { PageableResponse } from '@/shared/types/PageableResponse';
 import { WineFilters } from '@/shared/types/WineFilters';
 import { WineType } from '@/shared/types/WineType';

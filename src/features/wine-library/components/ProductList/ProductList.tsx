@@ -1,18 +1,23 @@
 import React from 'react';
 import styles from './ProductList.module.scss';
-import { ProductCard } from '@/features/wine-library/components/ProductCard';
+import { ProductCard } from '@/shared/components/ProductCard';
 import { Button } from '@/features/auth/components/Button/Button';
 import { BtnTitle } from '@/shared/components/BtnTitle';
 import { useScreenWidth } from '@/shared/hooks/useScreenWidth';
 import { useAppSelector } from '@/store/hooks';
 import { useWineFilters } from '../../hooks/useWineFilters';
+import { useFavorites } from '@/features/favorites/hooks/useFavorites';
+import { EmptyBlock } from '@/shared/components/Alerts/EmptyBlock';
+import { TITLE } from '@/shared/constants/context';
+import { ErrorBlock } from '@/shared/components/Alerts/ErrorBlock';
 
 type ProductListProps = {};
 
 export const ProductList: React.FC<ProductListProps> = ({}) => {
   const { wineList, isLast, error } = useAppSelector((state) => state.wineList);
   const { isMobile } = useScreenWidth();
-  const { filters, updateFilters } = useWineFilters();
+  const { filters, updateFilters, resetFilters } = useWineFilters();
+  const { favoriteIds } = useFavorites();
 
   const buttonTitle = isMobile ? 'Load More' : 'Load More Wines';
 
@@ -22,18 +27,26 @@ export const ProductList: React.FC<ProductListProps> = ({}) => {
     }
   };
 
+  const alerts = TITLE.library.alerts;
   return (
     <div className={styles.productListContainer}>
       {error ? (
-        <span className={styles.error}>{error}</span>
+        <ErrorBlock message={error} />
       ) : wineList.length === 0 ? (
-        <span className={styles.error}>
-          Can not find wines with that filters
-        </span>
+        <EmptyBlock
+          text={alerts.empty.title}
+          btnTitle={alerts.empty.btnName}
+          subText={alerts.empty.text}
+          btnAction={resetFilters}
+        />
       ) : (
         <div className={styles.productList}>
           {wineList.map((item) => (
-            <ProductCard wineItem={item} key={item.id} />
+            <ProductCard
+              wineItem={item}
+              key={item.id}
+              inFavoriteList={favoriteIds.has(item.id)}
+            />
           ))}
         </div>
       )}

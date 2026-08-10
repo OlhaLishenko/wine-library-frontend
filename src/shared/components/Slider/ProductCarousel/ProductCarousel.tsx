@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import './ProductCarousel.scss';
-import { ProductCard } from '@/features/wine-library/components/ProductCard';
+import { ProductCard } from '@/shared/components/ProductCard';
 import { SliderContext } from '@/shared/hooks/SliderContext';
 import { WineType } from '@/shared/types/WineType';
 
@@ -35,7 +35,7 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({
   return (
     <div className="slider-product-list" ref={containerRef}>
       {wineList.map((wine) => (
-        <ProductCard isSlider="true" wineItem={wine} key={wine.id} />
+        <ProductCard isSlider={true} wineItem={wine} key={wine.id} />
       ))}
     </div>
   );

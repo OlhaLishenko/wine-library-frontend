@@ -58,11 +58,7 @@ export const FilterMenu: React.FC<FilterMenuProps> = ({ children }) => {
 
       <ul className={clsx(styles.filterList)}>
         {filterList.map((filterItem) => (
-          <FilterItem
-            key={filterItem.filterName}
-            filterItem={filterItem}
-            // selectedFilters={selectedFilters}
-          />
+          <FilterItem key={filterItem.filterName} filterItem={filterItem} />
         ))}
       </ul>
     </div>

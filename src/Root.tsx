@@ -4,9 +4,10 @@ import { store } from './store';
 import App from './App';
 import { LoginPageWrapper } from './pages/LogInPage/LoginPage';
 import { CreateAccountPageWrapper } from './pages/CreateAccount/CreateAccountPage';
-import { Favorites } from './pages/Favorites';
+import { FavoritesPage } from './pages/FavoritesPage';
 import { LibraryPage } from './pages/LibraryPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
+import { SommelierPage } from './pages/SommelierPage';
 
 export const Root = () => {
   return (
@@ -20,7 +21,8 @@ export const Root = () => {
           <Route path="library" element={<LibraryPage />} />
           <Route path="wines/:id" element={<ProductDetailsPage />} />
 
-          <Route path="favorites" element={<Favorites />} />
+          <Route path="favorites" element={<FavoritesPage />} />
+          <Route path="sommelier" element={<SommelierPage />} />
           {/* <Route path=":productId" element={<ProductDetailsPage />} /> */}
         </Route>
         {/* <Route path="*" element={<NotFoundPage />} /> */}

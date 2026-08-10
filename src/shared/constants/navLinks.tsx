@@ -11,4 +11,9 @@ export const NAVLINKS = {
     path: '/favorites',
     icon: Icons.Like,
   },
+  sommelier: {
+    name: 'Sommelier',
+    path: '/sommelier',
+    icon: Icons.Cross,
+  },
 };

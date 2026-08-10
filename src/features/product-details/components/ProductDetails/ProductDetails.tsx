@@ -14,8 +14,10 @@ import { SectionText } from '@/shared/components/SectionText';
 import { Line } from '@/shared/components/Line';
 import { TopNav } from '@/shared/components/TopNav';
 import { normolizeTitle } from '@/utility/normolizeTitle';
-import { ProductSliderSection } from '@/shared/components/ProductSliderSection';
+import { ProductSliderSection } from '@/shared/components/Slider/ProductSliderSection';
 import { useScreenWidth } from '@/shared/hooks/useScreenWidth';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { seveItemToFavorites } from '@/store/Favorites/savetoFavorites';
 
 type ProductDetailsProps = {
   wineDetails: WineType | null;
@@ -26,13 +28,16 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
   wineDetails,
   sliderWineList,
 }) => {
+  const { loader, error } = useAppSelector((state) => state.saveFavorite);
+  const dispatch = useAppDispatch();
+
   if (!wineDetails) {
     return;
   }
 
   const { isMobile } = useScreenWidth();
-  console.log('isMobile');
-  console.log(isMobile);
+  // console.log('isMobile');
+  // console.log(isMobile);
 
   const propertyList = getPropertyList(wineDetails);
 
@@ -63,6 +68,10 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
     list: sliderWineList,
   };
 
+  // const saveToFavorites = async (id: number) => {
+  //   dispatch(seveItemToFavorites(id));
+  // };
+
   return (
     <div className={styles.productDetails}>
       <TopNav wineName={wineDetails.name} />
@@ -90,7 +99,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
           <Line />
           <div className={styles.propertyContainer}>
             {mainProrerties.map((item) => (
-              <div className={styles.propertyItem}>
+              <div className={styles.propertyItem} key={item.title}>
                 <span className={styles.propertyText}>{item.title}</span>
                 <span
                   className={clsx(styles.propertyText, styles.propertyValue)}
@@ -100,7 +109,12 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
               </div>
             ))}
           </div>
-          <Button fullWidth variant={!isMobile ? 'narrow' : 'primary'}>
+          <Button
+            onClick={() => dispatch(seveItemToFavorites(wineDetails.id))}
+            fullWidth
+            variant={!isMobile ? 'narrow' : 'primary'}
+            loading={loader}
+          >
             <BtnTitle>+ Add to favorites</BtnTitle>
           </Button>
         </div>
@@ -108,7 +122,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
 
       <div className={styles.container}>
         {sectionList.map((section) => (
-          <div className={styles.aboutSection}>
+          <div className={styles.aboutSection} key={section.title}>
             <h3 className={styles.sectionTitle}>{section.title}</h3>
             {section.body}
           </div>

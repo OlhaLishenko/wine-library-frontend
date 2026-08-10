@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { loadWineList } from '@/store/Library/wineListSlice';
 import { useWineFilters } from '../../hooks/useWineFilters';
 import { RiseLoader } from 'react-spinners';
+import { getFavoriteList } from '@/store/Favorites/getFavorites';
 
 export function Library() {
   const location = useLocation();
@@ -23,6 +24,10 @@ export function Library() {
   useEffect(() => {
     dispatch(loadWineList({ filters, name: filters.name }));
   }, [dispatch, filters]);
+
+  useEffect(() => {
+    dispatch(getFavoriteList());
+  }, [dispatch]);
 
   return (
     <AppLayout>

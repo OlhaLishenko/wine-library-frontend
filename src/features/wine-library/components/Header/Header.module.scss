@@ -25,4 +25,12 @@
 
 .headerNavIcon {
   color: $color-text-muted;
+  position: relative;
+}
+
+.favCountMarker {
+  display: flex;
+  position: absolute;
+  padding: 5px;
+  background-color: $color-text-subtle;
 }

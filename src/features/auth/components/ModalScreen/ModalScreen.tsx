@@ -5,9 +5,10 @@ import { useContext } from 'react';
 import { ModalScreenContext } from '../../hooks/modalScreen.context';
 import classNames from 'classnames';
 import { TITLE } from '@/shared/constants/context';
+import { AlertContent } from '@/shared/components/Alerts/AlertContent';
 
 type ModalScreenType = {
-  message: string | null;
+  message: string;
   onResent?: () => void;
 };
 
@@ -28,11 +29,7 @@ export function ModalScreen({ message, onResent }: ModalScreenType) {
         <button className={styles.modalCloseBtn} onClick={handleClose}>
           <Icons.Close />
         </button>
-        <Icons.ErrorAlert />
-        <div className={styles.textContent}>
-          <h1 className={styles.textContentTitle}>{TITLE.modal.title}</h1>
-          <h2 className={styles.textContentSubtitle}>{message}</h2>
-        </div>
+        <AlertContent message={message} />
         <div className={styles.modalBtns}>
           <Button onClick={onResent} fullWidth>
             {TITLE.modal.btnOk}

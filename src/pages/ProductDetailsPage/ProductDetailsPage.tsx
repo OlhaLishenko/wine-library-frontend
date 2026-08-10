@@ -6,9 +6,9 @@ import { getWineDetailsService } from '@/services/getWineDetails.service';
 import { WineType } from '@/shared/types/WineType';
 import { MoonLoader } from 'react-spinners';
 import { ProductDetails } from '@/features/product-details/components/ProductDetails';
-import { searchWinesService } from '@/services/searchWines.service';
 import { getWinesService } from '@/services/getWines.service';
 import { SliderProvider } from '@/shared/hooks/SliderContext';
+import { ErrorBlock } from '@/shared/components/Alerts/ErrorBlock';
 
 export const ProductDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,7 +20,6 @@ export const ProductDetailsPage = () => {
   const [sliderWineList, setSliderWineList] = useState<WineType[]>([]);
 
   useEffect(() => {
-    console.log('id from useParams:', id);
     const fetchWineDetails = async () => {
       setLoader(true);
       try {
@@ -47,7 +46,7 @@ export const ProductDetailsPage = () => {
       {loader ? (
         <MoonLoader />
       ) : error ? (
-        <p>{error ?? 'Cannot fetch wine details'}</p>
+        <ErrorBlock message={error} />
       ) : (
         <SliderProvider>
           <ProductDetails
