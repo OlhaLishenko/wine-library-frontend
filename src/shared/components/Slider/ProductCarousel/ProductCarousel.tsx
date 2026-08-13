@@ -35,7 +35,7 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({
   return (
     <div className="slider-product-list" ref={containerRef}>
       {wineList.map((wine) => (
-        <ProductCard isSlider={true} wineItem={wine} key={wine.id} />
+        <ProductCard isSliderPage={true} wineItem={wine} key={wine.id} />
       ))}
     </div>
   );

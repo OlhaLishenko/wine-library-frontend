@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './FilterItem.module.scss';
 import { Icons } from '@/assets/icons';
 import clsx from 'clsx';
@@ -6,27 +6,9 @@ import { Filter, FilterValue } from '@/shared/types/Filters';
 import { Checkbox } from '@/features/auth/components/Checkbox/Checkbox';
 import { useScreenWidth } from '@/shared/hooks/useScreenWidth';
 import { useWineFilters } from '../../hooks/useWineFilters';
-import { WineFilterKey } from '@/shared/types/WineFilters';
 import { UIModalContext } from '../../hooks/useUIModalContext';
-
-export const getFilterOptionValue = (option: FilterValue): string => {
-  if (typeof option === 'string' || typeof option === 'number') {
-    return String(option);
-  }
-  return String('id' in option ? option.id : option.code);
-};
-
-export const getFilterOptionName = (
-  filterList: Filter[],
-  filterName: WineFilterKey,
-  value: string
-): string => {
-  const filter = filterList.find((f) => f.filterName === filterName);
-  const option = filter?.values.find(
-    (opt) => getFilterOptionValue(opt) === value
-  );
-  return option?.name ?? value;
-};
+import { getFilterOptionValue } from '@/utility/getFilterOptionValue';
+import { getArrayFilterValue } from '@/utility/getArrayFilterValue';
 
 const IconControl = ({ isOpen }: { isOpen: boolean }) => {
   const { isDesktop } = useScreenWidth();
@@ -54,8 +36,10 @@ const OptionItem = ({
       ? String(option)
       : option.name;
 
-  const isChecked =
-    filters[filterItem.filterName]?.includes(optionValue) ?? false;
+  const isChecked = getArrayFilterValue(
+    filters,
+    filterItem.filterName
+  ).includes(optionValue);
 
   const handleChangeFilter = (option: FilterValue) => {
     toggleOption(filterItem.filterName, getFilterOptionValue(option));
@@ -77,11 +61,15 @@ const OptionItem = ({
 
 type FilterItemType = {
   filterItem: Filter;
+  isOpen: boolean;
+  onToggle: () => void;
 };
 
-export const FilterItem: React.FC<FilterItemType> = ({ filterItem }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+export const FilterItem: React.FC<FilterItemType> = ({
+  filterItem,
+  isOpen,
+  onToggle,
+}) => {
   const columnOptionList =
     filterItem.label === 'Producer' ||
     filterItem.label === 'Region' ||
@@ -94,7 +82,7 @@ export const FilterItem: React.FC<FilterItemType> = ({ filterItem }) => {
       <button
         type="button"
         className={clsx(styles.filterBtn)}
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={onToggle}
       >
         <span className={clsx(styles.filterItem)}>
           {filterItem.label}

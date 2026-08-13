@@ -23,4 +23,5 @@
 
 .linkActive {
   @include FontBasic(14px, 400, $color-cream);
+  pointer-events: none;
 }

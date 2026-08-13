@@ -1,5 +1,6 @@
 @use '@/styles/variables' as *;
 @use '@/styles/mixins' as *;
+@use '@/styles/extends' as *;
 
 .card {
   display: flex;
@@ -33,20 +34,21 @@
 
 .selected {
   border-color: $color-gold;
-  background: linear-gradient(180deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.03));
-  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35);
+  background-color: $color-selected;
 }
 
 .icon {
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: $radius-sm;
-  color: $color-gold;
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid $color-border;
+  @include Poll-icon-container();
+}
+
+.iconContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.iconImage {
+  @extend %poll-icon-size;
 }
 
 .text {

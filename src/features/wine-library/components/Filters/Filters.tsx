@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styles from './Filters.module.scss';
 import { Icons } from '@/assets/icons';
-import { Button } from '@/features/auth/components/Button/Button';
+import { Button } from '@/shared/components/Button/Button';
 import clsx from 'clsx';
 import { BtnTitle } from '@/shared/components/BtnTitle';
 import { UIModalContext } from '../../hooks/useUIModalContext';

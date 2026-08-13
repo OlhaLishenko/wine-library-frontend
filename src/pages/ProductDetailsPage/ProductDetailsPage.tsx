@@ -1,14 +1,13 @@
-import { AppLayout } from '@/layouts/AppLayout';
 import styles from './ProductDetailsPage.module.scss';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { getWineDetailsService } from '@/services/getWineDetails.service';
 import { WineType } from '@/shared/types/WineType';
-import { MoonLoader } from 'react-spinners';
 import { ProductDetails } from '@/features/product-details/components/ProductDetails';
 import { getWinesService } from '@/services/getWines.service';
 import { SliderProvider } from '@/shared/hooks/SliderContext';
 import { ErrorBlock } from '@/shared/components/Alerts/ErrorBlock';
+import { Loader } from '@/shared/components/Loader';
 
 export const ProductDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -41,10 +40,10 @@ export const ProductDetailsPage = () => {
   }, [id]);
 
   return (
-    <AppLayout>
+    <>
       <div className={styles.nav}></div>
       {loader ? (
-        <MoonLoader />
+        <Loader loading={loader} />
       ) : error ? (
         <ErrorBlock message={error} />
       ) : (
@@ -55,6 +54,6 @@ export const ProductDetailsPage = () => {
           />
         </SliderProvider>
       )}
-    </AppLayout>
+    </>
   );
 };

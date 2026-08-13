@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './NavContent.module.scss';
 import clsx from 'clsx';
 import { NavLink } from 'react-router';
 import { NAVLINKS } from '@/shared/constants/navLinks';
+import { UIModalContext } from '@/features/wine-library/hooks/useUIModalContext';
 
 type NavContentProps = {
   variant: 'aside' | 'buttonMenu';
@@ -10,6 +11,7 @@ type NavContentProps = {
 
 export const NavContent: React.FC<NavContentProps> = ({ variant }) => {
   const linkList = Object.values(NAVLINKS).flat();
+  const { openMenu, setOpenMenu } = useContext(UIModalContext);
 
   const linkClassName = (isActive: boolean) => {
     if (isActive && variant === 'buttonMenu') {
@@ -30,6 +32,7 @@ export const NavContent: React.FC<NavContentProps> = ({ variant }) => {
       {linkList.map((link) => (
         <NavLink
           to={link.path}
+          onClick={() => setOpenMenu(false)}
           className={({ isActive }) =>
             clsx(styles.navLink, linkClassName(isActive), {
               [styles.navLinkAside]: variant === 'aside',

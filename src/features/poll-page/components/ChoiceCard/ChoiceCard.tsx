@@ -1,41 +1,40 @@
-import type { ReactNode } from 'react';
 import { CheckIcon } from '../icons/Icons';
 import styles from './ChoiceCard.module.scss';
+import { IconsPoll } from '@/assets/icons';
+import { IconPollName } from '@/shared/types/IconPollName';
 
 export interface ChoiceCardProps {
   label: string;
-  hint?: string;
-  icon?: ReactNode;
+  icon: IconPollName;
   selected: boolean;
-  /** 'radio' shows a ring indicator, 'checkbox' shows a tick — purely visual. */
   control?: 'radio' | 'checkbox';
   onSelect: () => void;
 }
 
-/**
- * Selectable option tile used across the sommelier questionnaire. Renders as a
- * real <button> so it is keyboard- and screen-reader-operable; the parent owns
- * single- vs multi-select semantics.
- */
 export function ChoiceCard({
   label,
-  hint,
   icon,
   selected,
   control = 'radio',
   onSelect,
 }: ChoiceCardProps) {
+  const Icon = IconsPoll[icon];
   return (
     <button
       type="button"
-      className={[styles.card, selected ? styles.selected : ''].filter(Boolean).join(' ')}
+      className={[styles.card, selected ? styles.selected : '']
+        .filter(Boolean)
+        .join(' ')}
       aria-pressed={selected}
       onClick={onSelect}
     >
-      {icon && <span className={styles.icon}>{icon}</span>}
+      <div className={styles.icon}>
+        <div className={styles.iconContainer}>
+          {Icon && <Icon className={styles.iconImage} />}
+        </div>
+      </div>
       <span className={styles.text}>
         <span className={styles.label}>{label}</span>
-        {hint && <span className={styles.hint}>{hint}</span>}
       </span>
       <span
         className={[
@@ -44,7 +43,9 @@ export function ChoiceCard({
         ].join(' ')}
         aria-hidden="true"
       >
-        {control === 'checkbox' && selected && <CheckIcon className={styles.check} />}
+        {control === 'checkbox' && selected && (
+          <CheckIcon className={styles.check} />
+        )}
       </span>
     </button>
   );

@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import styles from './ProductCard.module.scss';
 import { WineType } from '@/shared/types/WineType';
 import { getImageUrl } from '@/utility/getImageUrl';
 import { Line } from '@/shared/components/Line';
-import { Button } from '@/features/auth/components/Button/Button';
+import { Button } from '@/shared/components/Button/Button';
 import { BtnTitle } from '@/shared/components/BtnTitle';
 import { TITLE } from '@/shared/constants/context';
 import { normolizeTitle } from '@/utility/normolizeTitle';
@@ -13,37 +13,24 @@ import { ProductCardTitle } from '@/shared/components/ProductCardTitle/ProductCa
 import { SliderContext } from '@/shared/hooks/SliderContext';
 import clsx from 'clsx';
 import { Icons } from '@/assets/icons';
-import { useAppDispatch } from '@/store/hooks';
-import { seveItemToFavorites } from '@/store/Favorites/savetoFavorites';
-import { favoritesService } from '@/services/favorites.service';
 import { useFavorites } from '@/features/favorites/hooks/useFavorites';
-import { setLocalFavoriteList } from '@/store/Favorites/getFavorites';
-import { FavoriteItem } from '@/shared/types/FavoriteItem';
 
 type ProductCardProps = {
   wineItem: WineType;
-  isSlider?: boolean;
-  isFavorites?: boolean;
-  deleteFavItem?: (id: number) => void;
-  inFavoriteList: boolean;
+  isSliderPage?: boolean;
+  isFavoritePage?: boolean;
 };
 
 export const ProductCard: React.FC<ProductCardProps> = React.memo(
-  ({
-    wineItem,
-    isSlider = false,
-    isFavorites = false,
-    deleteFavItem,
-    inFavoriteList,
-  }) => {
+  ({ wineItem, isSliderPage = false, isFavoritePage = false }) => {
     const navigate = useNavigate();
     const { alcoholIndicator, alcoholTitle, volumeIndicator } =
       TITLE.library.productCard;
     const slideRef = useRef<HTMLDivElement>(null);
     const { setSlideWidth } = useContext(SliderContext);
-    const dispatch = useAppDispatch();
 
-    const { localFavoriteList } = useFavorites();
+    const { favoriteIds, removeFavItem, toggleFavItem } = useFavorites();
+    const isFav = favoriteIds.has(wineItem.id);
 
     useEffect(() => {
       const handleResizeSlide = () => {
@@ -59,40 +46,22 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
       return () => window.removeEventListener('resize', handleResizeSlide);
     }, [setSlideWidth]);
 
-    const btnTitle = isFavorites
+    const btnTitle = isFavoritePage
       ? TITLE.favorites.productCardBtn
       : TITLE.library.productCardBtn;
 
-    const handleCardAction = (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      if (!isFavorites) {
+    const handleCardAction = () => {
+      if (!isFavoritePage || isSliderPage) {
         navigate(`/wines/${wineItem.id}`);
       } else {
-        deleteFavItem && deleteFavItem(wineItem.id);
+        removeFavItem(wineItem.id);
       }
-    };
-
-    const saveToFavorites = () => {
-      if (inFavoriteList) {
-        deleteFavItem && deleteFavItem(wineItem.id);
-        return;
-      }
-      dispatch(seveItemToFavorites(wineItem.id));
-      const wineToAdd: FavoriteItem = {
-        id: localFavoriteList.length,
-        wine: wineItem,
-        addedAt: '',
-      };
-      console.log(wineToAdd);
-
-      const updatedList = [...localFavoriteList, wineToAdd];
-      dispatch(setLocalFavoriteList(updatedList));
     };
 
     return (
       <div
         className={clsx(styles.card, {
-          [styles.cardSlider]: isSlider,
+          [styles.cardSlider]: isSliderPage,
         })}
         ref={slideRef}
       >
@@ -102,13 +71,16 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
             src={getImageUrl(`${wineItem.imageUrl}`)}
             alt={wineItem.name}
           />
-          <button className={styles.favMark} onClick={saveToFavorites}>
+          <button
+            className={styles.favMark}
+            onClick={() => toggleFavItem(wineItem)}
+          >
             <div
               className={clsx(styles.iconContainer, {
-                [styles.iconActive]: inFavoriteList,
+                [styles.iconActive]: isFav,
               })}
             >
-              {inFavoriteList ? (
+              {isFav ? (
                 <Icons.LikeFull className="icon icon--small" />
               ) : (
                 <Icons.Like className="icon icon--small" />

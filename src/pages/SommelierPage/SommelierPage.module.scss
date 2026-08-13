@@ -72,54 +72,28 @@
 }
 
 .topbar {
+  @include Content-padding-inline();
   display: flex;
   flex-direction: column;
   gap: $space-16;
-  padding: $space-20 $padding-mobile $space-16;
-  background: $color-surface;
-  border-bottom: 1px solid $color-border;
 
-  @include onTablet {
-    padding: $space-24 $padding-tablet $space-20;
-  }
-
-  // The wordmark + brand row is redundant once the aside is visible.
-  @include onDesktop {
-    background: transparent;
-    border-bottom: none;
-    padding: $space-40 $padding-desktop 0;
-  }
-}
-
-.topbarLogo {
-  display: flex;
-  align-items: center;
-  gap: $space-12;
-
-  @include onDesktop {
-    display: none;
-  }
-}
-
-.topbarTitle {
-  font-family: $font-heading;
-  font-weight: 700;
-  font-size: 15px;
-  color: $color-cream;
+  background: transparent;
+  border-bottom: none;
 }
 
 .content {
+  @include Content-padding-inline();
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
-  padding: $space-24 $padding-mobile $space-48;
+  padding-top: $space-24;
 
   @include onTablet {
-    padding: $space-40 $padding-tablet $space-48;
+    padding-top: $space-40;
   }
 
   @include onDesktop {
-    padding: $space-32 $padding-desktop $space-48;
+    padding-top: $space-32;
   }
 }
 

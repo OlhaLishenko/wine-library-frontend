@@ -1,0 +1,27 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.goToTopBtn {
+  width: 80px;
+  height: 80px;
+  background-color: $color-burgundy;
+  border-radius: $radius-pill;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 6px solid $color-burgundy-deep;
+
+  @include Hover;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.icon {
+  color: $color-cream;
+  width: 32px;
+  height: 32px;
+  transform: rotate(90deg);
+
+}

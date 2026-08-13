@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './EmptyBlock.module.scss';
 import { Icons } from '@/assets/icons';
-import { Button } from '@/features/auth/components/Button/Button';
+import { Button } from '@/shared/components/Button/Button';
 
 type EmptyBlockProps = {
   text: string;

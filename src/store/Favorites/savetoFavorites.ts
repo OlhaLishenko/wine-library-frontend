@@ -35,12 +35,10 @@ export const saveToFavoritesSlice = createSlice({
     builder.addCase(seveItemToFavorites.fulfilled, (state) => {
       state.loader = false;
       state.error = null;
-      // state.favoriteList = action.payload;
     });
     builder.addCase(seveItemToFavorites.rejected, (state, action) => {
       state.loader = false;
       state.error = action.payload as string;
-      // state.favoriteList = action.payload;
     });
   },
 });

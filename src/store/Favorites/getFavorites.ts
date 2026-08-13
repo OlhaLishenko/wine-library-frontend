@@ -35,10 +35,24 @@ export const getFavoriteListSlice = createSlice({
     setLocalFavoriteList(state, action: PayloadAction<FavoriteItem[]>) {
       state.localFavoriteList = action.payload;
     },
+
     removeLocalFavoriteItem(state, action: PayloadAction<number>) {
       state.localFavoriteList = state.localFavoriteList.filter(
         (item) => item.wine.id !== action.payload
       );
+    },
+
+    // saveLocalFavoriteItem(state, action: PayloadAction<FavoriteItem>) {
+    //   state.localFavoriteList = [...state.localFavoriteList, action.payload];
+    // },
+
+    saveLocalFavoriteItem(state, action: PayloadAction<FavoriteItem>) {
+      const exists = state.localFavoriteList.some(
+        (item: FavoriteItem) => item.wine.id === action.payload.wine.id
+      );
+      if (!exists) {
+        state.localFavoriteList = [...state.localFavoriteList, action.payload];
+      }
     },
   },
   extraReducers(builder) {
@@ -58,6 +72,9 @@ export const getFavoriteListSlice = createSlice({
     });
   },
 });
-export const { setLocalFavoriteList, removeLocalFavoriteItem } =
-  getFavoriteListSlice.actions;
+export const {
+  setLocalFavoriteList,
+  removeLocalFavoriteItem,
+  saveLocalFavoriteItem,
+} = getFavoriteListSlice.actions;
 export default getFavoriteListSlice.reducer;

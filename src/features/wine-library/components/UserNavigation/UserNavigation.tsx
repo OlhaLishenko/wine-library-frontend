@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Logo } from '@/shared/components/Logo/Logo';
 import { NavContent } from '@/shared/components/NavContent';
 import { Icons } from '@/assets/icons';
-import { Button } from '@/features/auth/components/Button/Button';
+import { Button } from '@/shared/components/Button/Button';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { logOut } from '@/store/Auth/authLogInSlice';
 import { User } from '@/features/auth/types/User';

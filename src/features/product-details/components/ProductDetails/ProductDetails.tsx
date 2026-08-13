@@ -4,7 +4,7 @@ import { WineType } from '@/shared/types/WineType';
 import { getImageUrl } from '@/utility/getImageUrl';
 import { ProductCardTitle } from '@/shared/components/ProductCardTitle';
 import { ProductCardSubtitle } from '@/shared/components/ProductCardSubtitle';
-import { Button } from '@/features/auth/components/Button/Button';
+import { Button } from '@/shared/components/Button/Button';
 import { BtnTitle } from '@/shared/components/BtnTitle/BtnTitle';
 import { clsx } from 'clsx';
 import { getPropertyList } from '@/utility/getPropertyList';
@@ -16,8 +16,9 @@ import { TopNav } from '@/shared/components/TopNav';
 import { normolizeTitle } from '@/utility/normolizeTitle';
 import { ProductSliderSection } from '@/shared/components/Slider/ProductSliderSection';
 import { useScreenWidth } from '@/shared/hooks/useScreenWidth';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { seveItemToFavorites } from '@/store/Favorites/savetoFavorites';
+import { useAppSelector } from '@/store/hooks';
+import { Icons } from '@/assets/icons';
+import { useFavorites } from '@/features/favorites/hooks/useFavorites';
 
 type ProductDetailsProps = {
   wineDetails: WineType | null;
@@ -28,20 +29,23 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
   wineDetails,
   sliderWineList,
 }) => {
-  const { loader, error } = useAppSelector((state) => state.saveFavorite);
-  const dispatch = useAppDispatch();
+  const { loader } = useAppSelector((state) => state.saveFavorite);
+  const { toggleFavItem, favoriteIds } = useFavorites();
 
   if (!wineDetails) {
     return;
   }
 
+  const isFav = favoriteIds.has(wineDetails.id);
+
   const { isMobile } = useScreenWidth();
-  // console.log('isMobile');
-  // console.log(isMobile);
 
   const propertyList = getPropertyList(wineDetails);
+  // const foodList = wineDetails.foods.map((item) => item);
+  // console.log('foodList');
+  // console.log(wineDetails.foods);
 
-  const sectionList = [
+  const sectionListFirst = [
     {
       title: 'About this wine',
       body: <SectionText text={wineDetails.description} />,
@@ -51,10 +55,15 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
       body: <DetailsList list={wineDetails.grapes} />,
     },
     {
-      title: 'Wine information',
-      body: <DetailsTable propertyList={propertyList} />,
+      title: 'Food pairings',
+      body: <DetailsList list={wineDetails.foods} />,
     },
   ];
+
+  const sectionTable = {
+    title: 'Wine information',
+    body: <DetailsTable propertyList={propertyList} />,
+  };
 
   const mainProrerties = [
     { title: 'Vintage', value: wineDetails.vintage },
@@ -67,10 +76,6 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
     title: 'New wines',
     list: sliderWineList,
   };
-
-  // const saveToFavorites = async (id: number) => {
-  //   dispatch(seveItemToFavorites(id));
-  // };
 
   return (
     <div className={styles.productDetails}>
@@ -110,23 +115,38 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
             ))}
           </div>
           <Button
-            onClick={() => dispatch(seveItemToFavorites(wineDetails.id))}
+            onClick={() => toggleFavItem(wineDetails)}
             fullWidth
             variant={!isMobile ? 'narrow' : 'primary'}
             loading={loader}
           >
-            <BtnTitle>+ Add to favorites</BtnTitle>
+            {isFav ? (
+              <BtnTitle>
+                <Icons.LikeFull
+                  className={clsx(styles.icon, 'icon icon--small')}
+                />
+                Remove from favorites
+              </BtnTitle>
+            ) : (
+              <BtnTitle>+ Add to favorites</BtnTitle>
+            )}
           </Button>
         </div>
       </div>
 
       <div className={styles.container}>
-        {sectionList.map((section) => (
-          <div className={styles.aboutSection} key={section.title}>
-            <h3 className={styles.sectionTitle}>{section.title}</h3>
-            {section.body}
-          </div>
-        ))}
+        <div className={styles.containerList}>
+          {sectionListFirst.map((section) => (
+            <div className={styles.aboutSection} key={section.title}>
+              <h3 className={styles.sectionTitle}>{section.title}</h3>
+              {section.body}
+            </div>
+          ))}
+        </div>
+        <div className={styles.tableContainer}>
+          <h3 className={styles.sectionTitle}>{sectionTable.title}</h3>
+          {sectionTable.body}
+        </div>
       </div>
       <ProductSliderSection content={sliderContent} />
     </div>

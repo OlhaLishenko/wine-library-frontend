@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './FavoritesPage.module.scss';
 import { AppLayout } from '@/layouts/AppLayout';
 import { TopNav } from '@/shared/components/TopNav';
-import { DotLoader } from 'react-spinners';
+import { DotLoader, MoonLoader } from 'react-spinners';
 import { FavoriteList } from '@/features/favorites/components/FavoriteList';
 import { EmptyBlock } from '@/shared/components/Alerts/EmptyBlock';
 import { Line } from '@/shared/components/Line';
@@ -13,7 +13,7 @@ import { TopBar } from '@/shared/components/TopBar';
 import { useNavigate } from 'react-router';
 import { useAppDispatch } from '@/store/hooks';
 import { getFavoriteList } from '@/store/Favorites/getFavorites';
-import { SommelierPage } from '../SommelierPage';
+import { Loader } from '@/shared/components/Loader';
 
 type FavoritesPageProps = {};
 
@@ -31,7 +31,6 @@ export const FavoritesPage: React.FC<FavoritesPageProps> = ({}) => {
     error,
     isRecentFirst,
     sortByAddedTime,
-    removeFavItem,
     removeAll,
   } = useFavorites();
 
@@ -42,38 +41,32 @@ export const FavoritesPage: React.FC<FavoritesPageProps> = ({}) => {
   };
 
   return (
-    <AppLayout>
-      <div className={styles.favorites}>
-        <TopNav />
-        <Line />
+    <div className={styles.favorites}>
+      <TopNav />
 
-        <section className={styles.container}>
-          <TopBar
-            sortList={sortByAddedTime}
-            list={localFavoriteList}
-            sortBtnTitle={sortBtnTitle}
-            removeAll={removeAll}
+      <section className={styles.container}>
+        <TopBar
+          sortList={sortByAddedTime}
+          list={localFavoriteList}
+          sortBtnTitle={sortBtnTitle}
+          removeAll={removeAll}
+        />
+
+        {loader ? (
+          <Loader loading={loader} />
+        ) : error ? (
+          <ErrorBlock message={TITLE.favorites.errorMessage} />
+        ) : localFavoriteList.length === 0 ? (
+          <EmptyBlock
+            text="No favorites yet"
+            btnTitle="Browse Library"
+            subText="Tap the heart on any wine in the catalog to save it here."
+            btnAction={moveToLibrary}
           />
-
-          {loader ? (
-            <DotLoader />
-          ) : error ? (
-            <ErrorBlock message={TITLE.favorites.errorMessage} />
-          ) : localFavoriteList.length === 0 ? (
-            <EmptyBlock
-              text="No favorites yet"
-              btnTitle="Browse Library"
-              subText="Tap the heart on any wine in the catalog to save it here."
-              btnAction={moveToLibrary}
-            />
-          ) : (
-            <FavoriteList
-              list={localFavoriteList}
-              deleteFavItem={removeFavItem}
-            />
-          )}
-        </section>
-      </div>
-    </AppLayout>
+        ) : (
+          <FavoriteList list={localFavoriteList} />
+        )}
+      </section>
+    </div>
   );
 };

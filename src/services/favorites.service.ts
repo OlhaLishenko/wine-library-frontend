@@ -43,10 +43,9 @@ export const favoritesService = {
 
   getCount: async () => {
     try {
-      const { data } =
-        await apiClient.get<PageableResponse<FavoriteItem>>('/favorites/count');
+      const { data } = await apiClient.get<number>('/favorites/count');
 
-      return data.content;
+      return data;
     } catch (err) {
       return errorHandling(err);
     }

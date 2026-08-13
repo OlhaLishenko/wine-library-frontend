@@ -6,13 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 type FavoriteListProps = {
   list: FavoriteItem[];
-  deleteFavItem: (id: number) => void;
 };
 
-export const FavoriteList: React.FC<FavoriteListProps> = ({
-  list,
-  deleteFavItem,
-}) => {
+export const FavoriteList: React.FC<FavoriteListProps> = ({ list }) => {
   return (
     <div className={styles.list}>
       <AnimatePresence>
@@ -28,9 +24,7 @@ export const FavoriteList: React.FC<FavoriteListProps> = ({
             <ProductCard
               key={item.id}
               wineItem={item.wine}
-              isFavorites={true}
-              deleteFavItem={deleteFavItem}
-              inFavoriteList={true}
+              isFavoritePage={true}
             />
           </motion.div>
         ))}

@@ -29,6 +29,9 @@ $color-light-opacity: rgba(167, 164, 156, 0.607);
 $color-border: rgba(212, 175, 55, 0.25);
 $color-border-hover: rgba(212, 175, 55, 0.45);
 $color-border-strong: rgba(212, 175, 55, 0.4);
+$color-selected: rgba(212, 175, 55, 0.1);
+$color-icon-poll: rgba(212, 175, 55, 0.08);
+$color-poll-el-bg: rgba(212, 175, 55, 0.18);
 
 // --- Typography ----------------------------------------------------------
 $font-heading: 'PlusJakarta', sans-serif;
@@ -69,3 +72,6 @@ $transition-press: 0.06s ease;
 $padding-mobile: 16px;
 $padding-tablet: 24px;
 $padding-desktop: 40px;
+
+$poll-icon-small: 20px;
+$poll-icon-big: 30px;

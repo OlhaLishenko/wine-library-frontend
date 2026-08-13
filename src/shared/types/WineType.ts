@@ -13,4 +13,7 @@ export type WineType = {
   grapes: string[];
   imageUrl: string;
   description: string;
+  price: number;
+  foods: string[];
+  favorite: boolean;
 };

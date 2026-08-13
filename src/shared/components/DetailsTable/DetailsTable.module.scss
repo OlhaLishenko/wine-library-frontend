@@ -2,6 +2,7 @@
 @use '@/styles/mixins' as *;
 
 .tableWrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: $space-12;

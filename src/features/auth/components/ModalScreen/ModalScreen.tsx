@@ -1,6 +1,6 @@
 import { Icons } from '@/assets/icons';
 import styles from './ModalScreen.module.scss';
-import { Button } from '../Button/Button';
+import { Button } from '../../../../shared/components/Button/Button';
 import { useContext } from 'react';
 import { ModalScreenContext } from '../../hooks/modalScreen.context';
 import classNames from 'classnames';

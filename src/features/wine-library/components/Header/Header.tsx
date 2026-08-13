@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import styles from './Header.module.scss';
-import { Icons } from '@/assets/icons';
+import { Icons, IconsPoll } from '@/assets/icons';
 import { Logo } from '@/shared/components/Logo/Logo';
 import clsx from 'clsx';
 import { useScreenWidth } from '@/shared/hooks/useScreenWidth';
@@ -19,20 +19,15 @@ export const Header: React.FC<HeaderProps> = () => {
   const { setOpenMenu } = useContext(UIModalContext);
   const currentUser = useAppSelector<User | null>((state) => state.currentUser);
   const location = useLocation();
+  const favoritesCount = useAppSelector(
+    (state) => state.favoriteList.localFavoriteList.length
+  );
+
   const linkToPage =
     location.pathname === '/favorites' ? NAVLINKS.library : NAVLINKS.favorites;
-  const isLibrary = location.pathname === '/library';
 
   const userEmail = currentUser ? currentUser.email : 'Unknown email';
   const userFullName = currentUser ? currentUser.fullName : 'Unknown user';
-
-  useEffect(() => {
-    const getFavCount = async () => {
-      await favoritesService.getCount();
-    };
-
-    getFavCount();
-  }, []);
 
   return (
     <header className={clsx('container', styles.header)}>
@@ -43,9 +38,21 @@ export const Header: React.FC<HeaderProps> = () => {
           <NavLink to={linkToPage.path}>
             <button className={clsx('icon', styles.headerNavIcon)}>
               <linkToPage.icon />
-              {isLibrary && <div className={styles.favCountMarker}>2</div>}
+              <div className={styles.favCountMarker}>
+                <span className={styles.favCountTitle}>{favoritesCount}</span>
+              </div>
             </button>
           </NavLink>
+
+          <NavLink to={'/sommelier'}>
+            <button className={styles.btnBig}>
+              <IconsPoll.sommelier className={styles.icon} />
+              <span className={styles.btnBigTitle}>
+                Virtual<br></br>Sommelier
+              </span>
+            </button>
+          </NavLink>
+
           <UserInfoBlock user={{ email: userEmail, fullName: userFullName }} />
         </div>
       ) : (

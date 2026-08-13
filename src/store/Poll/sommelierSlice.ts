@@ -1,22 +1,28 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-export interface AbvRange {
-  min: number;
-  max: number;
+export interface PriceRange {
+  minPrice: number;
+  maxPrice: number;
+}
+
+export interface AlcoholRange {
+  minAlcohol: number;
+  maxAlcohol: number;
+}
+
+export interface SweetnessValue {
+  code: string;
+  name: string;
 }
 
 export interface SommelierAnswers {
-  wineType: string | null;
-  sweetness: string | null;
-  body: string | null;
-  occasion: string | null;
-  /** Multi-select food pairings. */
-  pairings: string[];
-  abv: AbvRange;
+  sweetness: SweetnessValue | null;
+  budget: PriceRange;
+  food: string[];
+  alcohol: AlcoholRange;
 }
 
 export interface SommelierState {
-  /** Current question index. Equal to the question count means the result screen. */
   step: number;
   answers: SommelierAnswers;
 }
@@ -24,16 +30,20 @@ export interface SommelierState {
 const initialState: SommelierState = {
   step: 0,
   answers: {
-    wineType: null,
     sweetness: null,
-    body: null,
-    occasion: null,
-    pairings: [],
-    abv: { min: 11, max: 15 },
+    budget: { minPrice: 10, maxPrice: 750 },
+    food: [],
+    alcohol: { minAlcohol: 11, maxAlcohol: 15 },
   },
 };
 
-type SingleKey = 'wineType' | 'sweetness' | 'body' | 'occasion';
+interface SingleAnswerMap {
+  sweetness: SweetnessValue | null;
+  budget: PriceRange;
+  alcohol: AlcoholRange;
+}
+
+type SingleKey = keyof SingleAnswerMap;
 
 export const sommelierSlice = createSlice({
   name: 'sommelier',
@@ -48,17 +58,17 @@ export const sommelierSlice = createSlice({
     prevStep(state) {
       state.step = Math.max(0, state.step - 1);
     },
-    setSingle(state, action: PayloadAction<{ key: SingleKey; value: string }>) {
-      state.answers[action.payload.key] = action.payload.value;
+    setSingle<K extends SingleKey>(
+      state: SommelierState,
+      action: PayloadAction<{ key: K; value: SingleAnswerMap[K] }>
+    ) {
+      state.answers[action.payload.key] = action.payload.value as never;
     },
     togglePairing(state, action: PayloadAction<string>) {
-      const list = state.answers.pairings;
+      const list = state.answers.food;
       const i = list.indexOf(action.payload);
       if (i === -1) list.push(action.payload);
       else list.splice(i, 1);
-    },
-    setAbv(state, action: PayloadAction<AbvRange>) {
-      state.answers.abv = action.payload;
     },
     resetSommelier() {
       return initialState;
@@ -72,7 +82,6 @@ export const {
   prevStep,
   setSingle,
   togglePairing,
-  setAbv,
   resetSommelier,
 } = sommelierSlice.actions;
 

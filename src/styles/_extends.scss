@@ -1,0 +1,6 @@
+@use 'variables' as *;
+
+%poll-icon-size {
+  width: $poll-icon-small;
+  height: $poll-icon-small;
+}

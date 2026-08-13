@@ -24,7 +24,6 @@
   }
 }
 
-// Accessible keyboard focus ring.
 @mixin focus-ring($color: $color-gold) {
   &:focus-visible {
     outline: 2px solid $color;
@@ -87,4 +86,16 @@
   @include onTablet {
     max-width: 450px;
   }
+}
+
+@mixin Poll-icon-container($bg-color: $color-icon-poll, $size: 44px) {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: $size;
+  height: $size;
+  border-radius: $radius-sm;
+  color: $color-gold;
+  background: $bg-color;
+  border: 1px solid $color-border;
 }

@@ -1,49 +1,12 @@
 @use '@/styles/variables' as *;
 @use '@/styles/mixins' as *;
+@use '@/styles/extends' as *;
 
 .stage {
   display: flex;
   flex-direction: column;
   gap: $space-24;
   width: 100%;
-}
-
-.head {
-  display: flex;
-  flex-direction: column;
-  gap: $space-8;
-}
-
-.eyebrow {
-  font-family: $font-body;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: $color-gold;
-}
-
-.title {
-  margin: 0;
-  font-family: $font-heading;
-  font-weight: 800;
-  font-size: 26px;
-  line-height: 1.15;
-  color: $color-cream;
-  text-wrap: balance;
-
-  @include onTablet {
-    font-size: 32px;
-  }
-}
-
-.subtitle {
-  margin: 0;
-  max-width: 46ch;
-  font-size: 15px;
-  line-height: 1.5;
-  color: $color-text-muted;
-  text-wrap: pretty;
 }
 
 .body {
@@ -66,24 +29,4 @@
   background: $color-surface;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
-}
-
-.footer {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: $space-12;
-  padding-top: $space-16;
-  border-top: 1px solid $color-border;
-
-  @include onTablet {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  // Continue button carries the weight on wider screens.
-  :global(button) {
-    @include onTablet {
-      min-width: 150px;
-    }
-  }
 }

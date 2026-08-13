@@ -1,8 +1,6 @@
 @use '@/styles/variables' as *;
 @use '@/styles/mixins' as *;
 
-.productDetails {}
-
 .imageContainer {
   display: flex;
   width: 100%;
@@ -22,8 +20,6 @@
 
   @include onTablet {}
 }
-
-
 
 .title {
   display: flex;
@@ -61,16 +57,6 @@
   display: flex;
   flex-direction: column;
   gap: $space-16;
-
-  @include onTablet {
-    &:last-of-type {
-      width: 70%;
-      padding: $space-12;
-      border: 1px solid $color-text-subtle;
-      border-radius: $radius-lg;
-      align-self: center;
-    }
-  }
 }
 
 .sectionTitle {
@@ -80,12 +66,41 @@
 .container {
   @include Content-padding-inline();
   padding-block: $space-24;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: $space-32;
 
   @include onTablet {
-    // flex-direction: row;
+    grid-template-columns: 400px 1fr;
+  }
+}
+
+.containerList {
+  padding-block: $space-24;
+  display: flex;
+  flex-direction: column;
+  gap: $space-32;
+  grid-column: 1/-1;
+
+  @include onTablet {
+    grid-column: 1/2;
+  }
+}
+
+.tableContainer {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+
+
+  @include onTablet {
+    grid-column: 2/-1;
+    border: 1px solid $color-text-subtle;
+    border-radius: $radius-md;
+    padding: 20px;
+    background: linear-gradient(180deg, $color-surface-alt, $color-surface);
+
   }
 }
 
@@ -105,10 +120,6 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: $space-12;
-
-  @include onTablet {
-    // flex-direction: column;
-  }
 }
 
 .propertyItem {
@@ -124,4 +135,8 @@
 
 .propertyValue {
   @include FontBasic(14px, 500, $color-cream);
+}
+
+.icon {
+  color: $color-burgundy;
 }

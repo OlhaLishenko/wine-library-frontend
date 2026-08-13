@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './ProductList.module.scss';
 import { ProductCard } from '@/shared/components/ProductCard';
-import { Button } from '@/features/auth/components/Button/Button';
+import { Button } from '@/shared/components/Button/Button';
 import { BtnTitle } from '@/shared/components/BtnTitle';
 import { useScreenWidth } from '@/shared/hooks/useScreenWidth';
 import { useAppSelector } from '@/store/hooks';
 import { useWineFilters } from '../../hooks/useWineFilters';
-import { useFavorites } from '@/features/favorites/hooks/useFavorites';
 import { EmptyBlock } from '@/shared/components/Alerts/EmptyBlock';
 import { TITLE } from '@/shared/constants/context';
 import { ErrorBlock } from '@/shared/components/Alerts/ErrorBlock';
@@ -17,7 +16,6 @@ export const ProductList: React.FC<ProductListProps> = ({}) => {
   const { wineList, isLast, error } = useAppSelector((state) => state.wineList);
   const { isMobile } = useScreenWidth();
   const { filters, updateFilters, resetFilters } = useWineFilters();
-  const { favoriteIds } = useFavorites();
 
   const buttonTitle = isMobile ? 'Load More' : 'Load More Wines';
 
@@ -42,11 +40,7 @@ export const ProductList: React.FC<ProductListProps> = ({}) => {
       ) : (
         <div className={styles.productList}>
           {wineList.map((item) => (
-            <ProductCard
-              wineItem={item}
-              key={item.id}
-              inFavoriteList={favoriteIds.has(item.id)}
-            />
+            <ProductCard wineItem={item} key={item.id} />
           ))}
         </div>
       )}

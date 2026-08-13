@@ -1,7 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { useMemo, useCallback } from 'react';
 import { WineFilters, WineFilterKey } from '@/shared/types/WineFilters';
-import { Filter, FilterValue } from '@/shared/types/Filters';
 
 export const useWineFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,7 +15,6 @@ export const useWineFilters = () => {
       page: page ? Number(page) : 0,
       name: name ?? '',
       wineTypes: searchParams.getAll('wineTypes') ?? [],
-      sugarTypes: searchParams.getAll('sugarTypes') ?? [],
       countryIds: searchParams.getAll('countryIds') ?? [],
       regionIds: searchParams.getAll('regionIds') ?? [],
       producerIds: searchParams.getAll('producerIds') ?? [],
@@ -25,6 +23,8 @@ export const useWineFilters = () => {
       grapeIds: searchParams.getAll('grapeIds') ?? [],
       minAlcohol: minAlcohol ? Number(minAlcohol) : 8,
       maxAlcohol: maxAlcohol ? Number(maxAlcohol) : 20,
+
+      sugarTypes: searchParams.getAll('sugarTypes') ?? [],
     };
   }, [searchParams]);
 
@@ -49,9 +49,28 @@ export const useWineFilters = () => {
     [searchParams, setSearchParams]
   );
 
+  const setSingleOption = useCallback(
+    (key: WineFilterKey, value: string | null) => {
+      const next = new URLSearchParams(searchParams);
+      next.delete(key);
+      if (value) next.append(key, value);
+
+      next.delete('name');
+      next.set('page', '0');
+
+      setSearchParams(next);
+    },
+    [searchParams, setSearchParams]
+  );
+
   const updateFilters = useCallback(
     (
-      patch: Partial<Pick<WineFilters, 'page' | 'minAlcohol' | 'maxAlcohol'>>
+      patch: Partial<
+        Pick<
+          WineFilters,
+          'page' | 'minAlcohol' | 'maxAlcohol' | 'minPrice' | 'maxPrice'
+        >
+      >
     ) => {
       const next = new URLSearchParams(searchParams);
 
@@ -73,7 +92,7 @@ export const useWineFilters = () => {
         next.set('page', '0');
       }
 
-      setSearchParams(next);
+      setSearchParams(next, { preventScrollReset: true });
     },
     [searchParams, setSearchParams]
   );
@@ -96,5 +115,12 @@ export const useWineFilters = () => {
     setSearchParams({});
   }, [setSearchParams]);
 
-  return { filters, toggleOption, updateFilters, resetFilters, setNameSearch };
+  return {
+    filters,
+    toggleOption,
+    updateFilters,
+    resetFilters,
+    setNameSearch,
+    setSingleOption,
+  };
 };
