@@ -9,7 +9,16 @@ type TopNavProps = { wineName?: string };
 export const TopNav: React.FC<TopNavProps> = ({ wineName }) => {
   const { pathname } = useLocation();
 
-  const currentPage = wineName ? wineName : pathname[pathname.length - 1];
+  const currentPage = () => {
+    if (wineName) {
+      return wineName;
+    } else {
+      const pathnameList = pathname.split('/');
+      const currentPath = pathnameList[pathnameList.length - 1];
+      return `${currentPath[0].toUpperCase()}${currentPath.slice(1)}`;
+    }
+  };
+
   return (
     <div className={styles.topNav}>
       <Link to="/library">
@@ -21,10 +30,10 @@ export const TopNav: React.FC<TopNavProps> = ({ wineName }) => {
       <span className={styles.link}>/</span>
       <Link
         className={clsx(styles.link, styles.linkActive)}
-        to={`${currentPage}`}
+        to={`${currentPage()}`}
         aria-disabled
       >
-        {currentPage}
+        {currentPage()}
       </Link>
     </div>
   );

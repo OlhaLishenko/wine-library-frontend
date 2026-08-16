@@ -7,7 +7,7 @@ import {
   AuthInputsContext,
   AuthInputsContextProvider,
 } from '@/features/auth/hooks/authInputs.context';
-import { useContext, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useNavigate } from 'react-router';
 import { registerUser } from '@/store/Auth/authRegisterSlice';
@@ -47,18 +47,10 @@ export function CreateAccountPage() {
   const handleFullNameChange = (userName: string) => {
     const error = fullNameValidate(userName);
     setFullNameError(error);
-    setFullName(userName.trim());
+    setFullName(userName);
   };
 
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const error = fullNameValidate(fullName);
-    setFullNameError(error);
-
-    if (!validate()) {
-      return;
-    }
-
+  const registerAndLogin = useCallback(async () => {
     try {
       await dispatch(registerUser({ email, password, fullName })).unwrap();
     } catch {
@@ -73,6 +65,26 @@ export function CreateAccountPage() {
       setOpenModal(true);
       navigate('/login');
     }
+  }, [dispatch, email, password, fullName, navigate, setOpenModal]);
+
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const error = fullNameValidate(fullName);
+    setFullNameError(error);
+
+    if (!validate()) {
+      return;
+    }
+
+    await registerAndLogin();
+  };
+
+  const handleResent = async () => {
+    setOpenModal(false);
+    if (!validate()) {
+      return;
+    }
+    await registerAndLogin();
   };
   return (
     <AuthLayout quote={QUOTES.createAccount.quoteBg} bgImage={bgImage}>
@@ -94,7 +106,9 @@ export function CreateAccountPage() {
           errors={errors}
         />
       </AuthFormLayout>
-      {openModal && error && <ModalScreen message={error} />}
+      {openModal && error && (
+        <ModalScreen message={error} onResent={handleResent} />
+      )}
     </AuthLayout>
   );
 }

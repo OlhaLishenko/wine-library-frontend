@@ -1,14 +1,13 @@
-import { AppLayout } from '@/layouts/AppLayout';
 import styles from './ProductDetailsPage.module.scss';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { getWineDetailsService } from '@/services/getWineDetails.service';
 import { WineType } from '@/shared/types/WineType';
-import { MoonLoader } from 'react-spinners';
 import { ProductDetails } from '@/features/product-details/components/ProductDetails';
-import { searchWinesService } from '@/services/searchWines.service';
 import { getWinesService } from '@/services/getWines.service';
 import { SliderProvider } from '@/shared/hooks/SliderContext';
+import { ErrorBlock } from '@/shared/components/Alerts/ErrorBlock';
+import { Loader } from '@/shared/components/Loader';
 
 export const ProductDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,7 +19,6 @@ export const ProductDetailsPage = () => {
   const [sliderWineList, setSliderWineList] = useState<WineType[]>([]);
 
   useEffect(() => {
-    console.log('id from useParams:', id);
     const fetchWineDetails = async () => {
       setLoader(true);
       try {
@@ -42,12 +40,13 @@ export const ProductDetailsPage = () => {
   }, [id]);
 
   return (
-    <AppLayout>
-      <div className={styles.nav}></div>
+    <>
       {loader ? (
-        <MoonLoader />
+        <div className={styles.container}>
+          <Loader loading={loader} />
+        </div>
       ) : error ? (
-        <p>{error ?? 'Cannot fetch wine details'}</p>
+        <ErrorBlock message={error} />
       ) : (
         <SliderProvider>
           <ProductDetails
@@ -56,6 +55,6 @@ export const ProductDetailsPage = () => {
           />
         </SliderProvider>
       )}
-    </AppLayout>
+    </>
   );
 };

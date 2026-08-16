@@ -23,10 +23,7 @@ export const useUiFilters = () => {
     fetch('/data/wine_filters.json')
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
-
         const normalizedList = transformFilterList(result);
-        console.log(normalizedList);
 
         setFilterList(normalizedList);
       });

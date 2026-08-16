@@ -1,0 +1,16 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-20;
+
+  @include onTablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include onDesktop {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}

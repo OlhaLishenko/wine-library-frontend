@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import { Logo } from '@/shared/components/Logo/Logo';
 import { NavContent } from '@/shared/components/NavContent';
 import { Icons } from '@/assets/icons';
-import { Button } from '@/features/auth/components/Button/Button';
+import { Button } from '@/shared/components/Button/Button';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { logOut } from '@/store/Auth/authLogInSlice';
+import { logOut, logOutUser } from '@/store/Auth/authLogInSlice';
 import { User } from '@/features/auth/types/User';
 import { UIModalContext } from '../../hooks/useUIModalContext';
 import {
@@ -16,14 +16,17 @@ import {
 import { getUserInfo } from '@/utility/getUserInfo';
 import { UserInfoBlock } from '@/shared/components/UserInfoBlock';
 import { TITLE } from '@/shared/constants/context';
+import { useNavigate } from 'react-router';
+import { useLogOut } from '@/shared/hooks/useLogOut';
 
 type UserNavigationProps = {};
 
 export const UserNavigation: React.FC<UserNavigationProps> = () => {
   const currentUser = useAppSelector<User | null>((state) => state.currentUser);
-  const { accessToken } = useAppSelector((state) => state.authLogIn);
+  const { accessToken, loading } = useAppSelector((state) => state.authLogIn);
   const { openMenu, setOpenMenu } = useContext(UIModalContext);
   const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (accessToken) {
@@ -32,14 +35,19 @@ export const UserNavigation: React.FC<UserNavigationProps> = () => {
     }
   }, [accessToken, dispatch]);
 
-  console.log('accessToken');
-  console.log(accessToken);
-  console.log(currentUser?.fullName);
+  const { signOutCurrentUser } = useLogOut();
 
-  const signOutCurrentUser = async () => {
-    dispatch(deleteCurrentUser());
-    dispatch(logOut());
-  };
+  // const signOutCurrentUser = async () => {
+  //   if (refreshToken) {
+  //     await dispatch(logOutUser(refreshToken));
+  //   } else {
+  //     dispatch(logOut());
+  //   }
+
+  //   dispatch(deleteCurrentUser());
+
+  //   navigate('/login');
+  // };
 
   const userEmail = currentUser ? currentUser.email : 'Unknown email';
   const userFullName = currentUser ? currentUser.fullName : 'Unknown user';
@@ -66,7 +74,12 @@ export const UserNavigation: React.FC<UserNavigationProps> = () => {
         </div>
       </div>
       <div className="container">
-        <Button onClick={signOutCurrentUser} variant="ghost" fullWidth={true}>
+        <Button
+          onClick={signOutCurrentUser}
+          variant="ghost"
+          fullWidth={true}
+          loading={loading}
+        >
           {logOutBtn}
         </Button>
       </div>

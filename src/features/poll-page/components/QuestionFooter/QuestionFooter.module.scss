@@ -1,0 +1,21 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: $space-12;
+  padding-top: $space-16;
+  border-top: 1px solid $color-border;
+
+  @include onTablet {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  :global(button) {
+    @include onTablet {
+      min-width: 150px;
+    }
+  }
+}

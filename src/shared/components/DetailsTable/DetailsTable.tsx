@@ -11,10 +11,10 @@ export const DetailsTable: React.FC<DetailsTableProps> = ({ propertyList }) => {
   return (
     <div className={styles.tableWrapper}>
       {propertyList.map((item) => (
-        <span className={clsx(styles.container)}>
+        <span className={clsx(styles.container)} key={item.title}>
           <div className={styles.title}>{normolizeTitle(item.title)}</div>
           <div className={styles.value}>
-            {normolizeTitle(String(item.value))}
+            {normolizeTitle(String(item.value))} {item.title === 'price' && '$'}
           </div>
         </span>
       ))}

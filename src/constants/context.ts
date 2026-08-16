@@ -13,7 +13,6 @@ export const TITLE = {
   login: {
     title: `Welcome back`,
     subtitle: `Sign in to continue building your collection.`,
-    checkboxTitle: `Forgot password`,
     submitBtnTitle: `Sign In`,
     bottomFormTitle: `No account? `,
     bottomFormBtn: `Create one`,

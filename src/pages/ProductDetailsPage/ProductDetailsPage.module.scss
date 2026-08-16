@@ -1,2 +1,7 @@
 @use '@/styles/variables' as *;
 @use '@/styles/mixins' as *;
+
+.container {
+  @include Content-padding-inline();
+  padding-top: $space-24;
+}

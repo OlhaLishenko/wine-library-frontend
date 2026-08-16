@@ -1,0 +1,110 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $color-bg;
+
+  @include onDesktop {
+    flex-direction: row;
+  }
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: $space-12;
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-text-subtle;
+  transition: color $transition-fast;
+}
+
+.stepDot {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid $color-border;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  font-weight: 700;
+  color: inherit;
+}
+
+.stepActive {
+  color: $color-cream;
+
+  .stepDot {
+    border-color: $color-gold;
+    background: $color-gold;
+    color: $color-bg;
+  }
+}
+
+.stepDone {
+  color: $color-text-muted;
+
+  .stepDot {
+    border-color: $color-gold-dark;
+    color: $color-gold;
+  }
+}
+
+// --- Main column ---------------------------------------------------------
+.main {
+  @include Content-padding-inline();
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar {
+  @include Content-padding-inline();
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+
+  background: transparent;
+  border-bottom: none;
+}
+
+.content {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  padding-top: $space-24;
+
+
+  @include onTablet {
+    padding-top: $space-40;
+  }
+
+  @include onDesktop {
+    padding-top: $space-32;
+  }
+}
+
+// Question stage keeps a comfortable measure on large screens.
+.content>* {
+  width: 100%;
+  max-width: 720px;
+}
+
+.contentWrapper {
+  max-width: 720px;
+  margin-inline: auto;
+}

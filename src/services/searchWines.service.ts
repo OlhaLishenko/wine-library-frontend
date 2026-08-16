@@ -1,4 +1,3 @@
-// import { getClient } from '@/api/getClient';
 import { apiClient } from '@/api/apiClient';
 import { PageableResponse } from '@/shared/types/PageableResponse';
 import { WineType } from '@/shared/types/WineType';

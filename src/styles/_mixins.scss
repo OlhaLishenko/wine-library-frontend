@@ -24,7 +24,6 @@
   }
 }
 
-// Accessible keyboard focus ring.
 @mixin focus-ring($color: $color-gold) {
   &:focus-visible {
     outline: 2px solid $color;
@@ -71,4 +70,32 @@
     grid-template-columns: repeat(24, 32px);
     justify-content: center;
   }
+}
+
+@mixin Dashed-container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-20;
+  align-items: center;
+  width: 100%;
+  padding: 32px 10px;
+  border: 2px dashed $color-gold-dark;
+  border-radius: $radius-lg;
+  margin-inline: auto;
+
+  @include onTablet {
+    max-width: 450px;
+  }
+}
+
+@mixin Poll-icon-container($bg-color: $color-icon-poll, $size: 44px) {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: $size;
+  height: $size;
+  border-radius: $radius-sm;
+  color: $color-gold;
+  background: $bg-color;
+  border: 1px solid $color-border;
 }

@@ -65,18 +65,3 @@
     transform: scale(110%);
   }
 }
-
-.textContent {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  text-align: center;
-}
-
-.textContentTitle {
-  @include FontHeading (20px, 800);
-}
-
-.textContentSubtitle {
-  @include FontBasic (13px, 400);
-}

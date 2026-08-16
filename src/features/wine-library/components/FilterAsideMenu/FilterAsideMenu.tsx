@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styles from './FilterAsideMenu.module.scss';
 import { Icons } from '@/assets/icons';
 import clsx from 'clsx';
-import { Button } from '@/features/auth/components/Button/Button';
+import { Button } from '@/shared/components/Button/Button';
 import { FilterMenu } from '../FilterMenu';
 import { UIModalContext } from '../../hooks/useUIModalContext';
 import { useWineFilters } from '../../hooks/useWineFilters';

@@ -42,6 +42,18 @@ export const logInUser = createAsyncThunk(
   }
 );
 
+export const logOutUser = createAsyncThunk(
+  'auth/logOutUser',
+  async (refreshToken: string, { rejectWithValue }) => {
+    try {
+      await authService.logout(refreshToken);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to logout';
+      return rejectWithValue(message);
+    }
+  }
+);
+
 export const authLogInSlice = createSlice({
   name: 'authLogIn',
   initialState,
@@ -76,6 +88,22 @@ export const authLogInSlice = createSlice({
         localStorage.setItem('refreshToken', action.payload.refreshToken);
       })
       .addCase(logInUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(logOutUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logOutUser.fulfilled, (state) => {
+        state.loading = false;
+        state.accessToken = null;
+        state.refreshToken = null;
+        state.isAuthenticated = false;
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+      })
+      .addCase(logOutUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

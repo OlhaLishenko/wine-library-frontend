@@ -1,13 +1,14 @@
-import React, { ReactNode, useContext, useMemo } from 'react';
+import React, { ReactNode, useContext, useMemo, useState } from 'react';
 import styles from './FilterMenu.module.scss';
 import clsx from 'clsx';
-import { FilterItem, getFilterOptionName } from '../FilterItem';
 import { HeaderFiltersMenu } from '@/shared/components/HeaderFiltersMenu';
 import { useUiFilters } from '@/shared/hooks/useUiFilters';
 import { Icons } from '@/assets/icons';
 import AlcoholRange from '../AlcoholRange/AlcoholRange';
 import { useWineFilters } from '../../hooks/useWineFilters';
 import { WineFilterKey } from '@/shared/types/WineFilters';
+import { getFilterOptionName } from '@/utility/getFilterOptionName';
+import { FilterItem } from '../FilterItem';
 
 type FilterMenuProps = {
   children: ReactNode;
@@ -16,6 +17,12 @@ type FilterMenuProps = {
 export const FilterMenu: React.FC<FilterMenuProps> = ({ children }) => {
   const filterList = useUiFilters();
   const { toggleOption, filters } = useWineFilters();
+  const [openFilterName, setOpenFilterName] = useState<WineFilterKey | null>(
+    null
+  );
+  const handleToggle = (name: WineFilterKey) => {
+    setOpenFilterName((prev) => (prev === name ? null : name));
+  };
 
   const activeFilters = useMemo(
     () =>
@@ -61,7 +68,8 @@ export const FilterMenu: React.FC<FilterMenuProps> = ({ children }) => {
           <FilterItem
             key={filterItem.filterName}
             filterItem={filterItem}
-            // selectedFilters={selectedFilters}
+            isOpen={openFilterName === filterItem.filterName}
+            onToggle={() => handleToggle(filterItem.filterName)}
           />
         ))}
       </ul>

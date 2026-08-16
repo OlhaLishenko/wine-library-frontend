@@ -1,4 +1,4 @@
-import { Button } from '../Button/Button';
+import { Button } from '../../../../shared/components/Button/Button';
 import styles from './AuthFormLayout.module.scss';
 import { Link, useLocation } from 'react-router';
 import React, { ReactNode } from 'react';

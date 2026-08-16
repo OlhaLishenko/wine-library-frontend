@@ -1,6 +1,5 @@
 import type { SVGProps } from 'react';
 
-/** Eye — password visible. */
 export function EyeIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -22,7 +21,6 @@ export function EyeIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-/** Eye with slash — password hidden. */
 export function EyeOffIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -44,10 +42,15 @@ export function EyeOffIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-/** Checkmark used inside the custom checkbox. */
 export function CheckIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 12 10" fill="none" aria-hidden="true" focusable="false" {...props}>
+    <svg
+      viewBox="0 0 12 10"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
       <path
         d="M1 5l3.5 3.5L11 1.5"
         stroke="currentColor"
