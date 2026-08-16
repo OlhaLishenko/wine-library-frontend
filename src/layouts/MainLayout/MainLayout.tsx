@@ -21,9 +21,12 @@ export const MainLayout: React.FC = () => {
 
   return (
     <AppLayout>
-      <button className={styles.goToTopBtn} onClick={scrollToTop}>
-        <Icons.ArrowLeft className={styles.icon} />
-      </button>
+      {!openFilters && !openMenu && (
+        <button className={styles.goToTopBtn} onClick={scrollToTop}>
+          <Icons.ArrowLeft className={styles.icon} />
+        </button>
+      )}
+
       <App />
     </AppLayout>
   );

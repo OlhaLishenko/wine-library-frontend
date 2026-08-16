@@ -1,13 +1,10 @@
 import styles from './StepProgress.module.scss';
 
 export interface StepProgressProps {
-  /** Zero-based index of the active step. */
   current: number;
-  /** Total number of questions. */
   total: number;
 }
 
-/** Segmented progress bar with a "Question X of N" readout. */
 export function StepProgress({ current, total }: StepProgressProps) {
   const answered = Math.min(current, total);
   const pct = Math.round((answered / total) * 100);

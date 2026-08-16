@@ -58,4 +58,8 @@ The issue has been logged and our team is on it. Please try
 again in a moment.`,
     productCardBtn: 'Remove',
   },
+  sommelier: {
+    welcomeSubtitle:
+      'Answer six simple questions about your taste, the occasion, and your food. Our virtual sommelier will use your answers to find the wine that suits you best. No complicated wine terms — just a simple way to find your perfect match.',
+  },
 };

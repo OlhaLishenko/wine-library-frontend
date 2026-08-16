@@ -13,7 +13,9 @@ import { ErrorBlock } from '@/shared/components/Alerts/ErrorBlock';
 type ProductListProps = {};
 
 export const ProductList: React.FC<ProductListProps> = ({}) => {
-  const { wineList, isLast, error } = useAppSelector((state) => state.wineList);
+  const { wineList, isLast, error, loading } = useAppSelector(
+    (state) => state.wineList
+  );
   const { isMobile } = useScreenWidth();
   const { filters, updateFilters, resetFilters } = useWineFilters();
 
@@ -38,7 +40,10 @@ export const ProductList: React.FC<ProductListProps> = ({}) => {
           btnAction={resetFilters}
         />
       ) : (
-        <div className={styles.productList}>
+        <div
+          className={styles.productList}
+          style={{ opacity: loading ? 0.6 : 1, transition: 'opacity 0.15s' }}
+        >
           {wineList.map((item) => (
             <ProductCard wineItem={item} key={item.id} />
           ))}

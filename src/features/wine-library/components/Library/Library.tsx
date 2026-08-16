@@ -8,14 +8,21 @@ import clsx from 'clsx';
 import styles from './Library.module.scss';
 import { useAppSelector } from '@/store/hooks';
 import { useWineFilters } from '../../hooks/useWineFilters';
-import { RiseLoader } from 'react-spinners';
+import { useEffect, useState } from 'react';
 import { Loader } from '@/shared/components/Loader';
 
 export function Library() {
   const location = useLocation();
-  const { loading } = useAppSelector((state) => state.wineList);
+  const { wineList } = useAppSelector((state) => state.wineList);
   const { isDesktop } = useScreenWidth();
   const { resetFilters } = useWineFilters();
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    if (wineList.length > 0) {
+      setLoader(false);
+    }
+  }, [wineList]);
 
   return (
     <main className={clsx('container', styles.main)}>
@@ -35,9 +42,9 @@ export function Library() {
 
         <div className={clsx(styles.mainContent)}>
           <div className={styles.libraryList}>
-            {loading ? (
+            {loader ? (
               <div className={styles.loader}>
-                <Loader loading={loading} />
+                <Loader loading={loader} />
               </div>
             ) : (
               <ProductList />

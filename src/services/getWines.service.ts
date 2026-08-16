@@ -5,12 +5,16 @@ import { WineType } from '@/shared/types/WineType';
 import { AxiosError } from 'axios';
 
 export const getWinesService = async (
-  filters: WineFilters
+  filters: WineFilters,
+  size?: number
 ): Promise<PageableResponse<WineType>> => {
   try {
-    const { data } = await apiClient.get<PageableResponse<WineType>>('/wines', {
-      params: filters,
-    });
+    const { data } = await apiClient.get<PageableResponse<WineType>>(
+      `/wines?size=${size || 6}`,
+      {
+        params: filters,
+      }
+    );
 
     return data;
   } catch (err) {

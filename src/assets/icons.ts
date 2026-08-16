@@ -13,6 +13,7 @@ import ArrowLeftIcon from './icons/icon-arrow-left.svg?react';
 import ErrorLike from './icons/icon-like-error.svg?react';
 import IconLikeFull from './icons/icon-like-full.svg?react';
 import IconArrowSolid from './icons/icon-arrow-right-solid.svg?react';
+import IconArrowLogOut from './icons/icon-log-out.svg?react';
 
 import IconPollBoneDry from './icons/poll-icons/icon-bone-dry.svg?react';
 import IconPollCheese from './icons/poll-icons/icon-cheese.svg?react';
@@ -54,6 +55,7 @@ export const Icons = {
   ErrorLike: ErrorLike,
   LikeFull: IconLikeFull,
   ArrowSolid: IconArrowSolid,
+  LogOut: IconArrowLogOut,
 };
 
 export const IconsPoll = {

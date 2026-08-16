@@ -10,8 +10,7 @@ import { ChoiceCard } from '../ChoiceCard';
 import { SommelierQuestion } from '@/shared/types/SommelierQuestion';
 import { QuestionTitle } from '../QuestionTitle';
 import { QuestionFooter } from '../QuestionFooter';
-import { sommelierAnswersToParams } from '../../utility/mapSommelierAnswersToWineFilters';
-import { loadWineList } from '@/store/Library/wineListSlice';
+import { submitPoolAnswers } from '@/store/Poll/pollSlice';
 
 export function Questionnaire() {
   const dispatch = useAppDispatch();
@@ -23,14 +22,14 @@ export function Questionnaire() {
 
   const singleValue =
     question.kind === 'single'
-      ? answers[question.id as 'sweetness' | 'budget' | 'alcohol']
+      ? answers[question.id as 'budget' | 'alcohol']
       : null;
 
-  const canContinue = question.kind === 'single' ? Boolean(singleValue) : true;
+  const canContinue = singleValue ? Boolean(singleValue) : true;
 
   const handleNext = () => {
     if (isLastStep) {
-      dispatch(loadWineList(sommelierAnswersToParams(answers)));
+      dispatch(submitPoolAnswers(answers));
     }
     dispatch(nextStep());
   };

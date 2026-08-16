@@ -6,6 +6,7 @@ import { wineListSlice } from './Library/wineListSlice';
 import { getFavoriteListSlice } from './Favorites/getFavorites';
 import { saveToFavoritesSlice } from './Favorites/savetoFavorites';
 import { sommelierSlice } from './Poll/sommelierSlice';
+import { pollSlice } from './Poll/pollSlice';
 
 const rootReducer = combineSlices(
   authLogInSlice,
@@ -14,7 +15,8 @@ const rootReducer = combineSlices(
   wineListSlice,
   getFavoriteListSlice,
   saveToFavoritesSlice,
-  sommelierSlice
+  sommelierSlice,
+  pollSlice
 );
 
 export const store = configureStore({

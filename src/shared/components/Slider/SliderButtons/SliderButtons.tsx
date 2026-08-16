@@ -14,14 +14,7 @@ export const SliderButtons: React.FC<SliderButtonProps> = ({ itemAmount }) => {
   const { screenWidth } = useContext(ScreenContext);
   const slidesPerView = Math.floor(screenWidth / slideWidth);
 
-  console.log('screenWidth');
-  console.log(screenWidth);
-
-  console.log('slidesPerView');
-  console.log(slidesPerView);
-
   const handlePrevSlide = () => {
-    // debugger;
     setButton('prev');
 
     if (currentSlideIndex + slidesPerView >= itemAmount) {
@@ -32,7 +25,6 @@ export const SliderButtons: React.FC<SliderButtonProps> = ({ itemAmount }) => {
   };
 
   const handleNextSlide = () => {
-    // debugger;
     setButton('next');
 
     if (currentSlideIndex + slidesPerView >= itemAmount) {

@@ -26,6 +26,10 @@
 .headerNavIcon {
   color: $color-text-muted;
   position: relative;
+
+  &:first-of-type {
+    margin-right: 20px;
+  }
 }
 
 .favCountMarker {
@@ -67,4 +71,10 @@
 
 .btnBigTitle {
   @include FontBasic(12px, 500);
+}
+
+.logOutBtn {
+  color: $color-border-strong;
+  width: 30px;
+  height: 30px;
 }

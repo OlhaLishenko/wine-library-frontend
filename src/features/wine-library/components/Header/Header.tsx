@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styles from './Header.module.scss';
 import { Icons, IconsPoll } from '@/assets/icons';
 import { Logo } from '@/shared/components/Logo/Logo';
@@ -10,7 +10,7 @@ import { User } from '@/features/auth/types/User';
 import { NAVLINKS } from '@/shared/constants/navLinks';
 import { UIModalContext } from '../../hooks/useUIModalContext';
 import { UserInfoBlock } from '@/shared/components/UserInfoBlock';
-import { favoritesService } from '@/services/favorites.service';
+import { useLogOut } from '@/shared/hooks/useLogOut';
 
 type HeaderProps = {};
 
@@ -22,6 +22,8 @@ export const Header: React.FC<HeaderProps> = () => {
   const favoritesCount = useAppSelector(
     (state) => state.favoriteList.localFavoriteList.length
   );
+
+  const { signOutCurrentUser } = useLogOut();
 
   const linkToPage =
     location.pathname === '/favorites' ? NAVLINKS.library : NAVLINKS.favorites;
@@ -54,6 +56,9 @@ export const Header: React.FC<HeaderProps> = () => {
           </NavLink>
 
           <UserInfoBlock user={{ email: userEmail, fullName: userFullName }} />
+          <button className={styles.logOutBtn} onClick={signOutCurrentUser}>
+            <Icons.LogOut />
+          </button>
         </div>
       ) : (
         <button

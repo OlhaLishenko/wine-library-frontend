@@ -9,6 +9,8 @@ export const useWineFilters = () => {
     const page = searchParams.get('page');
     const minAlcohol = searchParams.get('minAlcohol');
     const maxAlcohol = searchParams.get('maxAlcohol');
+    const minPrice = searchParams.get('minPrice');
+    const maxPrice = searchParams.get('maxPrice');
     const name = searchParams.get('name');
 
     return {
@@ -23,8 +25,11 @@ export const useWineFilters = () => {
       grapeIds: searchParams.getAll('grapeIds') ?? [],
       minAlcohol: minAlcohol ? Number(minAlcohol) : 8,
       maxAlcohol: maxAlcohol ? Number(maxAlcohol) : 20,
+      minPrice: minPrice ? Number(minPrice) : 10,
+      maxPrice: maxPrice ? Number(maxPrice) : 750,
 
       sugarTypes: searchParams.getAll('sugarTypes') ?? [],
+      foods: searchParams.getAll('foods') ?? [],
     };
   }, [searchParams]);
 

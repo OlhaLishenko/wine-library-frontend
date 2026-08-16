@@ -8,41 +8,6 @@
   width: 100%;
 }
 
-.head {
-  display: flex;
-  flex-direction: column;
-  gap: $space-12;
-}
-
-.badge {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: $space-8;
-  padding: 6px 12px;
-  border-radius: $radius-pill;
-  background: rgba(212, 175, 55, 0.1);
-  border: 1px solid $color-border;
-  color: $color-gold;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.title {
-  margin: 0;
-  font-family: $font-heading;
-  font-weight: 800;
-  font-size: 28px;
-  line-height: 1.12;
-  color: $color-cream;
-  text-wrap: balance;
-
-  @include onTablet {
-    font-size: 34px;
-  }
-}
-
 .lede {
   margin: 0;
   max-width: 52ch;

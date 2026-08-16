@@ -1,27 +1,10 @@
+import {
+  AlcoholRange,
+  PriceRange,
+  SommelierAnswers,
+  SweetnessValue,
+} from '@/shared/types/SommelierAnswers';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-export interface PriceRange {
-  minPrice: number;
-  maxPrice: number;
-}
-
-export interface AlcoholRange {
-  minAlcohol: number;
-  maxAlcohol: number;
-}
-
-export interface SweetnessValue {
-  code: string;
-  name: string;
-}
-
-export interface SommelierAnswers {
-  sweetness: SweetnessValue | null;
-  budget: PriceRange;
-  food: string[];
-  alcohol: AlcoholRange;
-}
-
 export interface SommelierState {
   step: number;
   answers: SommelierAnswers;
@@ -30,15 +13,14 @@ export interface SommelierState {
 const initialState: SommelierState = {
   step: 0,
   answers: {
-    sweetness: null,
+    sweetness: [],
     budget: { minPrice: 10, maxPrice: 750 },
     food: [],
     alcohol: { minAlcohol: 11, maxAlcohol: 15 },
   },
 };
-
 interface SingleAnswerMap {
-  sweetness: SweetnessValue | null;
+  sweetness: SweetnessValue[];
   budget: PriceRange;
   alcohol: AlcoholRange;
 }

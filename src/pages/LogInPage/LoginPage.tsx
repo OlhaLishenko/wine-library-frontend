@@ -33,6 +33,11 @@ function LoginPage() {
   const { email, password, validate, errors } = useContext(AuthInputsContext);
   const { setOpenModal } = useContext(ModalScreenContext);
 
+  const { accessToken, refreshToken } = useAppSelector(
+    (state) => state.authLogIn
+  );
+  console.log(accessToken, refreshToken);
+
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -41,11 +46,9 @@ function LoginPage() {
     }
 
     try {
-      const result = await dispatch(logInUser({ email, password })).unwrap();
-      console.log('LOGIN RESULT:', result);
+      await dispatch(logInUser({ email, password })).unwrap();
       navigate('/library');
     } catch (err) {
-      console.log('LOGIN ERROR:', err);
       setOpenModal(true);
       return;
     }

@@ -41,9 +41,10 @@ export const ProductDetailsPage = () => {
 
   return (
     <>
-      <div className={styles.nav}></div>
       {loader ? (
-        <Loader loading={loader} />
+        <div className={styles.container}>
+          <Loader loading={loader} />
+        </div>
       ) : error ? (
         <ErrorBlock message={error} />
       ) : (

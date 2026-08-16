@@ -21,10 +21,10 @@
     transition: all 500ms ease-in-out;
 
     &__image {
-      // color: $primary-text-color;
       width: 12px;
       height: 12px;
       transition: all 500ms ease-in-out;
+      color: $color-cream;
 
       &:disabled {
         color: $color-cream;

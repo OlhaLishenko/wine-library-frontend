@@ -11,11 +11,11 @@ type ResultListType = {
 };
 
 export const ResultList: React.FC<ResultListType> = ({ restartPoll }) => {
-  const { wineList, loading, error } = useAppSelector((s) => s.wineList);
+  const { wines, loading, error } = useAppSelector((s) => s.pollResultList);
 
   if (loading) return <Loader loading={loading} />;
   if (error) return <ErrorBlock message={error} />;
-  if (wineList.length === 0)
+  if (wines.length === 0)
     return (
       <EmptyBlock
         text={'No matching wines found'}
@@ -27,7 +27,7 @@ export const ResultList: React.FC<ResultListType> = ({ restartPoll }) => {
 
   return (
     <div className={styles.resultList}>
-      {wineList.map((wine) => (
+      {wines.map((wine) => (
         <ResultCard key={wine.id} wine={wine} />
       ))}
     </div>

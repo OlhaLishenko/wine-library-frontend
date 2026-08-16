@@ -1,0 +1,14 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.container {
+  @include Content-padding-inline();
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+}
+
+.subtitle {
+  @include FontBasic(14px, 400, $color-text-subtle);
+  margin-bottom: $space-16;
+}

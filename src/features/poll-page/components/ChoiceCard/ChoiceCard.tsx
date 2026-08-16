@@ -1,4 +1,4 @@
-import { CheckIcon } from '../icons/Icons';
+import { CheckIcon } from '../../../../shared/components/icons/Icons';
 import styles from './ChoiceCard.module.scss';
 import { IconsPoll } from '@/assets/icons';
 import { IconPollName } from '@/shared/types/IconPollName';

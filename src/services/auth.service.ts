@@ -8,7 +8,7 @@ import { AxiosError } from 'axios';
 type ApiErrorResponse = {
   timestamp: string;
   statusCode: number;
-  errors: string[];
+  errors: string[] | Record<string, string[]>;
 };
 
 function extractErrorMessage(err: unknown): string {
@@ -19,8 +19,15 @@ function extractErrorMessage(err: unknown): string {
 
     const data = err.response?.data as ApiErrorResponse | undefined;
 
-    if (data?.errors && data.errors.length > 0) {
+    if (Array.isArray(data?.errors) && data?.errors.length > 0) {
       return data.errors.join(', ');
+    }
+
+    if (data?.errors && typeof data?.errors === 'object') {
+      const messages = Object.values(data.errors).flat();
+      if (messages.length > 0) {
+        return messages.join(', ');
+      }
     }
 
     return 'Untracked error';
@@ -50,6 +57,14 @@ export const authService = {
     }
 
     return data;
+  },
+
+  logout: async (refreshToken: string): Promise<void> => {
+    try {
+      await apiClient.post('/auth/logout', { refreshToken });
+    } catch (err) {
+      throw new Error(extractErrorMessage(err));
+    }
   },
 
   register: async (registerData: RegisterData): Promise<User> => {

@@ -41,9 +41,6 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
   const { isMobile } = useScreenWidth();
 
   const propertyList = getPropertyList(wineDetails);
-  // const foodList = wineDetails.foods.map((item) => item);
-  // console.log('foodList');
-  // console.log(wineDetails.foods);
 
   const sectionListFirst = [
     {
