@@ -1,0 +1,130 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-20;
+  padding: $space-20;
+  background: linear-gradient(180deg, $color-surface-alt, $color-surface);
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-panel;
+  width: 80%;
+
+  @include onTablet {
+    flex-direction: row;
+    padding: $space-24;
+    width: 100%;
+  }
+}
+
+.imageContainer {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  border-radius: $radius-md;
+  border: 1px solid $color-border;
+  overflow: hidden;
+
+  @include onTablet {
+    width: 150px;
+    height: auto;
+    align-self: stretch;
+  }
+}
+
+.image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bottleType {
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-gold;
+}
+
+.info {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.wineName {
+  margin: 0;
+  font-family: $font-heading;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.2;
+  color: $color-cream;
+}
+
+.origin {
+  margin: 0;
+  font-size: 13px;
+  color: $color-gold;
+  font-weight: 600;
+}
+
+.note {
+  margin: $space-4 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $color-text-muted;
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-12 $space-20;
+  margin: $space-12 0 0;
+  text-align: center;
+
+  @include onTablet {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  dt {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $color-text-subtle;
+    padding: 8px 5px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 10px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right,
+          transparent,
+          $color-gold 50%,
+          transparent);
+    }
+  }
+
+  dd {
+    @include FontBasic(14px, 400, $color-text-subtle);
+    margin: 0;
+  }
+}

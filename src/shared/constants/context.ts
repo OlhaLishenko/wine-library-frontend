@@ -43,5 +43,23 @@ export const TITLE = {
       alcoholIndicator: '%',
       volumeIndicator: 'Bootle',
     },
+    alerts: {
+      empty: {
+        title: 'No wines with this Filters',
+        btnName: 'Clear filters',
+        text: 'Revise filters and delete some of them to see more wines',
+      },
+    },
+  },
+
+  favorites: {
+    errorMessage: `We couldn't pour this one — our servers hit an unexpected error.
+The issue has been logged and our team is on it. Please try
+again in a moment.`,
+    productCardBtn: 'Remove',
+  },
+  sommelier: {
+    welcomeSubtitle:
+      'Answer six simple questions about your taste, the occasion, and your food. Our virtual sommelier will use your answers to find the wine that suits you best. No complicated wine terms — just a simple way to find your perfect match.',
   },
 };

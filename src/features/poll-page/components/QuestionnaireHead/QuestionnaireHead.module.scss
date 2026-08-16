@@ -1,0 +1,22 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.title {
+  margin: 0;
+  font-family: $font-heading;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.12;
+  color: $color-cream;
+  text-wrap: balance;
+
+  @include onTablet {
+    font-size: 34px;
+  }
+}

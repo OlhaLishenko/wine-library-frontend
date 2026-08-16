@@ -1,0 +1,32 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+@use '@/styles/extends' as *;
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+  width: 100%;
+}
+
+.body {
+  flex: 1 1 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-12;
+
+  @include onTablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.abv {
+  max-width: 520px;
+  padding: $space-24;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+}

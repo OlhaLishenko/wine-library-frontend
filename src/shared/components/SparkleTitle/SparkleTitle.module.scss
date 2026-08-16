@@ -1,0 +1,14 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.sparkleTitle {
+  @include FontBasic(12px, 700, $color-gold);
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-8;
+  padding: 6px 12px;
+  border-radius: $radius-pill;
+  background: $color-selected;
+  border: 1px solid $color-border;
+}

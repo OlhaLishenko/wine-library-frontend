@@ -13,7 +13,7 @@
 .headerNav {
   display: flex;
   flex-direction: row;
-  gap: $space-20;
+  gap: $space-8;
   align-items: center;
 }
 
@@ -25,4 +25,56 @@
 
 .headerNavIcon {
   color: $color-text-muted;
+  position: relative;
+
+  &:first-of-type {
+    margin-right: 20px;
+  }
+}
+
+.favCountMarker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: $color-burgundy;
+  border-radius: $radius-pill;
+  width: 20px;
+  height: 20px;
+  bottom: -5px;
+  left: 15px;
+}
+
+.favCountTitle {
+  @include FontBasic(11px, 500);
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  color: $color-gold;
+}
+
+.btnBig {
+  width: 150px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  gap: $space-8;
+  padding: 10px 10px;
+  background-color: $color-icon-poll;
+  border-radius: $radius-md;
+  justify-content: space-between;
+  border: 1px solid $color-gold-dark;
+}
+
+.btnBigTitle {
+  @include FontBasic(12px, 500);
+}
+
+.logOutBtn {
+  color: $color-border-strong;
+  width: 30px;
+  height: 30px;
 }

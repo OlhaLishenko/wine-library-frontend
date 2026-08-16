@@ -2,7 +2,15 @@ import { WineType } from '@/shared/types/WineType';
 
 export const getPropertyList = (wine: WineType) => {
   const list: { title: string; value: string | number }[] = [];
-  const outOfList = ['id', 'name', 'imageUrl', 'description', 'grapes'];
+  const outOfList = [
+    'id',
+    'name',
+    'imageUrl',
+    'description',
+    'grapes',
+    'foods',
+    'favorite',
+  ];
 
   const filteredList = Object.entries(wine).filter(
     (property) => !outOfList.some((item) => item === property[0])

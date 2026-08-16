@@ -1,0 +1,20 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.container {
+  @include Dashed-container();
+}
+
+.imageContainer {
+  width: 56px;
+  height: 56px;
+}
+
+.text {
+  @include FontHeading(17px, 700, $color-cream);
+}
+
+.subText {
+  @include FontBasic(13px, 400, $color-text-subtle);
+  text-align: center;
+}

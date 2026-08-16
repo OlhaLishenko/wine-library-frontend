@@ -1,0 +1,55 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: $space-12;
+}
+
+.count {
+  font-family: $font-body;
+  font-size: 13px;
+  color: $color-text-muted;
+
+  strong {
+    color: $color-cream;
+    font-weight: 700;
+  }
+}
+
+.pct {
+  font-size: 12px;
+  font-weight: 600;
+  color: $color-gold;
+  letter-spacing: 0.02em;
+}
+
+.track {
+  display: flex;
+  gap: $space-8;
+}
+
+.segment {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(212, 175, 55, 0.18);
+  transition: background-color $transition-fast;
+}
+
+.done {
+  background: $color-gold-dark;
+}
+
+.active {
+  background: $color-gold;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35);
+}

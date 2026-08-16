@@ -4,4 +4,8 @@
 .btnTitle {
   @include FontBasic(13px, 600);
   color: inherit;
+  display: flex;
+  flex-direction: row;
+  gap: $space-8;
+  align-items: center;
 }

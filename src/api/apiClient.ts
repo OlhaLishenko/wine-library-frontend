@@ -37,6 +37,12 @@ apiClient.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
+    if (error.response?.status === 503 && !originalRequest._retry503) {
+      originalRequest._retry503 = true;
+      await new Promise((r) => setTimeout(r, 3000));
+      return apiClient(originalRequest);
+    }
+
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
         return new Promise<string>((resolve, reject) => {

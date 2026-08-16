@@ -3,12 +3,20 @@ import { authRegisterSlice } from './Auth/authRegisterSlice';
 import { authLogInSlice } from './Auth/authLogInSlice';
 import { currentUserSlice } from './Auth/currentUserSlice';
 import { wineListSlice } from './Library/wineListSlice';
+import { getFavoriteListSlice } from './Favorites/getFavorites';
+import { saveToFavoritesSlice } from './Favorites/savetoFavorites';
+import { sommelierSlice } from './Poll/sommelierSlice';
+import { pollSlice } from './Poll/pollSlice';
 
 const rootReducer = combineSlices(
   authLogInSlice,
   authRegisterSlice,
   currentUserSlice,
-  wineListSlice
+  wineListSlice,
+  getFavoriteListSlice,
+  saveToFavoritesSlice,
+  sommelierSlice,
+  pollSlice
 );
 
 export const store = configureStore({

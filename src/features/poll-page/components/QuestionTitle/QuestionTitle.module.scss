@@ -1,0 +1,71 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+@use '@/styles/extends' as *;
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.questionType {
+  display: flex;
+  flex-direction: row;
+  gap: $space-8;
+  padding: 8px 12px;
+  background-color: $color-poll-el-bg;
+  width: fit-content;
+  border-radius: $radius-lg;
+  color: $color-text-subtle;
+
+}
+
+.typeWrapper {
+  display: flex;
+  justify-content: end;
+}
+
+.typeTitle {
+  @include FontBasic(15px, 400, $color-text-subtle);
+}
+
+.title {
+  @include FontHeading (26px, 800);
+  margin: 0;
+  line-height: 1.15;
+  text-wrap: balance;
+
+  @include onTablet {
+    @include FontBasic(32px, 800);
+  }
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: $color-text-muted;
+  text-wrap: pretty;
+}
+
+.iconContainer {
+  @include Poll-icon-container($color-burgundy, 50px);
+}
+
+.iconImage {
+  width: $poll-icon-big;
+  height: $poll-icon-big;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $space-20;
+}
+
+.questionWrapper {
+  display: flex;
+  flex-direction: column;
+}

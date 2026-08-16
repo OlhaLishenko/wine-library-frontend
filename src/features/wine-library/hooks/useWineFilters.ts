@@ -1,7 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { useMemo, useCallback } from 'react';
 import { WineFilters, WineFilterKey } from '@/shared/types/WineFilters';
-import { Filter, FilterValue } from '@/shared/types/Filters';
 
 export const useWineFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,13 +9,14 @@ export const useWineFilters = () => {
     const page = searchParams.get('page');
     const minAlcohol = searchParams.get('minAlcohol');
     const maxAlcohol = searchParams.get('maxAlcohol');
+    const minPrice = searchParams.get('minPrice');
+    const maxPrice = searchParams.get('maxPrice');
     const name = searchParams.get('name');
 
     return {
       page: page ? Number(page) : 0,
       name: name ?? '',
       wineTypes: searchParams.getAll('wineTypes') ?? [],
-      sugarTypes: searchParams.getAll('sugarTypes') ?? [],
       countryIds: searchParams.getAll('countryIds') ?? [],
       regionIds: searchParams.getAll('regionIds') ?? [],
       producerIds: searchParams.getAll('producerIds') ?? [],
@@ -25,6 +25,11 @@ export const useWineFilters = () => {
       grapeIds: searchParams.getAll('grapeIds') ?? [],
       minAlcohol: minAlcohol ? Number(minAlcohol) : 8,
       maxAlcohol: maxAlcohol ? Number(maxAlcohol) : 20,
+      minPrice: minPrice ? Number(minPrice) : 10,
+      maxPrice: maxPrice ? Number(maxPrice) : 750,
+
+      sugarTypes: searchParams.getAll('sugarTypes') ?? [],
+      foods: searchParams.getAll('foods') ?? [],
     };
   }, [searchParams]);
 
@@ -49,9 +54,28 @@ export const useWineFilters = () => {
     [searchParams, setSearchParams]
   );
 
+  const setSingleOption = useCallback(
+    (key: WineFilterKey, value: string | null) => {
+      const next = new URLSearchParams(searchParams);
+      next.delete(key);
+      if (value) next.append(key, value);
+
+      next.delete('name');
+      next.set('page', '0');
+
+      setSearchParams(next);
+    },
+    [searchParams, setSearchParams]
+  );
+
   const updateFilters = useCallback(
     (
-      patch: Partial<Pick<WineFilters, 'page' | 'minAlcohol' | 'maxAlcohol'>>
+      patch: Partial<
+        Pick<
+          WineFilters,
+          'page' | 'minAlcohol' | 'maxAlcohol' | 'minPrice' | 'maxPrice'
+        >
+      >
     ) => {
       const next = new URLSearchParams(searchParams);
 
@@ -73,7 +97,7 @@ export const useWineFilters = () => {
         next.set('page', '0');
       }
 
-      setSearchParams(next);
+      setSearchParams(next, { preventScrollReset: true });
     },
     [searchParams, setSearchParams]
   );
@@ -96,5 +120,12 @@ export const useWineFilters = () => {
     setSearchParams({});
   }, [setSearchParams]);
 
-  return { filters, toggleOption, updateFilters, resetFilters, setNameSearch };
+  return {
+    filters,
+    toggleOption,
+    updateFilters,
+    resetFilters,
+    setNameSearch,
+    setSingleOption,
+  };
 };
