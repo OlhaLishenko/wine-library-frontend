@@ -36,7 +36,6 @@ function LoginPage() {
   const { accessToken, refreshToken } = useAppSelector(
     (state) => state.authLogIn
   );
-  console.log(accessToken, refreshToken);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();

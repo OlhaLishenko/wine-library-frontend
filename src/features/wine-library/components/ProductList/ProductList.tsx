@@ -9,6 +9,7 @@ import { useWineFilters } from '../../hooks/useWineFilters';
 import { EmptyBlock } from '@/shared/components/Alerts/EmptyBlock';
 import { TITLE } from '@/shared/constants/context';
 import { ErrorBlock } from '@/shared/components/Alerts/ErrorBlock';
+import { Loader } from '@/shared/components/Loader';
 
 type ProductListProps = {};
 
@@ -44,8 +45,13 @@ export const ProductList: React.FC<ProductListProps> = ({}) => {
           className={styles.productList}
           style={{ opacity: loading ? 0.6 : 1, transition: 'opacity 0.15s' }}
         >
+          {loading && (
+            <div className={styles.loading}>
+              <Loader loading={true} />
+            </div>
+          )}
           {wineList.map((item) => (
-            <ProductCard wineItem={item} key={item.id} />
+            <ProductCard wineItem={item} />
           ))}
         </div>
       )}

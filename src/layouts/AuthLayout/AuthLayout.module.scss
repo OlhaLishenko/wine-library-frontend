@@ -3,7 +3,7 @@
 @use './_logIn.variables.scss/index.scss' as *;
 
 .layout {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background: $color-surface;
