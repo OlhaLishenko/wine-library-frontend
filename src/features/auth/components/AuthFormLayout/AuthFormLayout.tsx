@@ -28,7 +28,7 @@ export function AuthFormLayout({
   const linkTo = location.pathname === '/login' ? '/create-account' : '/login';
 
   return (
-    <form className={styles.form} onSubmit={onSubmit} noValidate>
+    <form className={styles.form} onSubmit={onSubmit}>
       <header className={styles.header}>
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.subtitle}>{subtitle}</p>

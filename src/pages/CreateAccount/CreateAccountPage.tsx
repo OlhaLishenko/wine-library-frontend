@@ -50,6 +50,10 @@ export function CreateAccountPage() {
     setFullName(userName);
   };
 
+  const handleFullNameBlur = () => {
+    setFullNameError(fullNameValidate(fullName));
+  };
+
   const registerAndLogin = useCallback(async () => {
     try {
       await dispatch(registerUser({ email, password, fullName })).unwrap();
@@ -69,10 +73,13 @@ export function CreateAccountPage() {
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const error = fullNameValidate(fullName);
-    setFullNameError(error);
 
-    if (!validate()) {
+    const fullNameError = fullNameValidate(fullName);
+    setFullNameError(fullNameError);
+
+    const isCredentialsValid = validate();
+
+    if (fullNameError || !isCredentialsValid) {
       return;
     }
 
@@ -102,6 +109,7 @@ export function CreateAccountPage() {
         <CreateAccountForm
           fullName={fullName}
           fullNameError={fullNameError}
+          handleFullNameBlur={handleFullNameBlur}
           handleFullNameChange={handleFullNameChange}
           errors={errors}
         />

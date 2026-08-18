@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
 import styles from './FavoritesPage.module.scss';
-import { AppLayout } from '@/layouts/AppLayout';
 import { TopNav } from '@/shared/components/TopNav';
-import { DotLoader, MoonLoader } from 'react-spinners';
 import { FavoriteList } from '@/features/favorites/components/FavoriteList';
 import { EmptyBlock } from '@/shared/components/Alerts/EmptyBlock';
-import { Line } from '@/shared/components/Line';
 import { TITLE } from '@/shared/constants/context';
 import { ErrorBlock } from '@/shared/components/Alerts/ErrorBlock';
 import { useFavorites } from '@/features/favorites/hooks/useFavorites';

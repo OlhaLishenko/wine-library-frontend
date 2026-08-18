@@ -6,13 +6,15 @@ type CreateAccountFormType = {
   fullName: string;
   fullNameError: string | null;
   handleFullNameChange: (userName: string) => void;
+  handleFullNameBlur: () => void;
   errors: AuthError | null;
 };
 
 export const CreateAccountForm = ({
   fullName,
-  fullNameError,
   handleFullNameChange,
+  handleFullNameBlur,
+  fullNameError,
   errors,
 }: CreateAccountFormType) => {
   return (
@@ -20,6 +22,7 @@ export const CreateAccountForm = ({
       <Input
         value={fullName}
         onChange={(e) => handleFullNameChange(e.target.value)}
+        onBlur={handleFullNameBlur}
         error={fullNameError}
         id="fullname"
         name="fullname"

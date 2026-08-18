@@ -50,7 +50,8 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
       ? TITLE.favorites.productCardBtn
       : TITLE.library.productCardBtn;
 
-    const handleCardAction = () => {
+    const handleCardAction = (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
       if (!isFavoritePage || isSliderPage) {
         navigate(`/wines/${wineItem.id}`);
       } else {
@@ -73,7 +74,10 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
           />
           <button
             className={styles.favMark}
-            onClick={() => toggleFavItem(wineItem)}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleFavItem(wineItem);
+            }}
           >
             <div
               className={clsx(styles.iconContainer, {

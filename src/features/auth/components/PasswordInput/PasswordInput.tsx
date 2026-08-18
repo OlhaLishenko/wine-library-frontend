@@ -8,7 +8,6 @@ import styles from './PasswordInput.module.scss';
 
 export type PasswordInputProps = Omit<InputProps, 'type' | 'trailing'>;
 
-/** Password field with a show/hide visibility toggle. */
 export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
   function PasswordInput(props, ref) {
     const [visible, setVisible] = useState(false);

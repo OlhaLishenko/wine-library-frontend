@@ -16,27 +16,26 @@ export function BaseFormInput({ errors }: BaseFormInputType) {
   const { email, password, setEmail, setPassword, setErrors } =
     useContext(AuthInputsContext);
 
-  const onBlurEmail = () => {
-    const emailEl = emailRef.current;
-    if (emailEl?.validity.typeMismatch) {
-      setEmailError('Invalid email format');
-    } else if (emailEl?.validity.valid) {
-      setEmailError('');
-    }
+  const getEmailError = (el: HTMLInputElement | null): string => {
+    if (!el) return '';
+    if (el.validity.valueMissing) return 'Email is required';
+    if (el.validity.typeMismatch) return 'Invalid email format';
+    return '';
   };
 
-  const onBlurPassword = () => {
-    const passwordEl = passwordRef.current;
-    if (passwordEl?.validity.tooShort) {
-      setPasswordError('Password is too short');
-    } else if (passwordEl?.validity.valid) {
-      setPasswordError('');
-    }
+  const getPasswordError = (el: HTMLInputElement | null): string => {
+    if (!el) return '';
+    if (el.validity.valueMissing) return 'Password is required';
+    if (el.validity.tooShort) return 'Password is too short';
+    return '';
   };
 
-  const inputError = errors
-    ? errors
-    : { email: emailError, password: passwordError };
+  const onBlurEmail = () => setEmailError(getEmailError(emailRef.current));
+  const onBlurPassword = () =>
+    setPasswordError(getPasswordError(passwordRef.current));
+
+  const emailErrorMessage = errors?.email || emailError;
+  const passwordErrorMessage = errors?.password || passwordError;
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(() => e.target.value);
@@ -69,7 +68,7 @@ export function BaseFormInput({ errors }: BaseFormInputType) {
         placeholder="you@email.com"
         autoComplete="email"
         required
-        error={inputError.email ?? emailError}
+        error={emailErrorMessage}
         ref={emailRef}
       />
 
@@ -84,7 +83,7 @@ export function BaseFormInput({ errors }: BaseFormInputType) {
         autoComplete="current-password"
         minLength={3}
         required
-        error={inputError.password ?? passwordError}
+        error={passwordErrorMessage}
         ref={passwordRef}
       />
     </>
