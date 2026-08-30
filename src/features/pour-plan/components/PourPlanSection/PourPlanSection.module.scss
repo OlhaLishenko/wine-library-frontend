@@ -1,0 +1,41 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-20;
+  padding: 20px;
+  background: $color-surface;
+  border: 1px solid $color-poll-el-bg;
+  border-radius: 14px;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: $space-12;
+}
+
+.index {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: $color-selected;
+  border: 1px solid $color-border;
+  @include FontHeading(14px, 800, $color-gold);
+}
+
+.title {
+  margin: 0;
+  @include FontHeading(18px, 800, $color-cream);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: $space-20;
+}

@@ -1,0 +1,199 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-20;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.eyebrow {
+  @include FontBasic(13px, 700, $color-gold);
+}
+
+.title {
+  margin: 0;
+  @include FontHeading(28px, 800);
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 0;
+  @include FontBasic(15px, 400, $color-text-muted);
+  line-height: 1.5;
+}
+
+// --- Guests -----------------------------------------------------------
+
+.stepperRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-24;
+}
+
+.stepperBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid $color-border;
+  background: $color-selected;
+  color: $color-gold;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $color-border-hover;
+  }
+}
+
+.stepperValue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.stepperNumber {
+  @include FontHeading(34px, 800);
+}
+
+.stepperLabel {
+  @include FontBasic(13px, 400, $color-text-subtle);
+}
+
+// --- Occasion -----------------------------------------------------------
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-12;
+}
+
+.durationRow {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.durationLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.durationLabel {
+  @include FontBasic(12px, 700, $color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.durationValue {
+  @include FontHeading(14px, 700, $color-gold);
+}
+
+// --- Pour style -----------------------------------------------------------
+
+.subsection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+.subsectionLabel {
+  @include FontBasic(12px, 700, $color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.roleToggle {
+  display: flex;
+  gap: $space-8;
+}
+
+.roleBtn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 13px 12px;
+  border-radius: $radius-md;
+  border: 1px solid $color-poll-el-bg;
+  background: $color-bg;
+  @include FontBasic(14px, 600, $color-text-muted);
+  cursor: pointer;
+  transition: border-color $transition-fast;
+}
+
+.roleBtnActive {
+  border-color: $color-gold;
+  color: $color-gold;
+  box-shadow: inset 0 0 0 1px $color-gold;
+}
+
+.paceList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}
+
+// --- Mix -----------------------------------------------------------
+
+.mixHint {
+  margin: 0;
+  @include FontBasic(13px, 400, $color-text-muted);
+}
+
+.suggestBtn {
+  align-self: flex-start;
+  @include FontBasic(13px, 700, $color-gold);
+  padding: 10px 18px;
+  border-radius: $radius-pill;
+  border: 1px solid $color-border;
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $color-border-hover;
+  }
+}
+
+.mixList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+}
+
+.mixRow {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.mixLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mixLabel {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+  @include FontBasic(14px, 600, $color-cream);
+}
+
+.mixDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.mixValue {
+  @include FontBasic(14px, 700, $color-cream);
+}

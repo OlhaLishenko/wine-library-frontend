@@ -18,7 +18,11 @@ const STATS = [
   },
 ];
 
-export const PourPlanWelcome: React.FC = () => {
+type PourPlanWelcomeProps = {
+  onStart: () => void;
+};
+
+export const PourPlanWelcome: React.FC<PourPlanWelcomeProps> = ({ onStart }) => {
   return (
     <div className={styles.welcome}>
       <span className={styles.badge}>Event Planning</span>
@@ -32,7 +36,7 @@ export const PourPlanWelcome: React.FC = () => {
       </p>
 
       <div className={styles.actions}>
-        <Button>Start Planning</Button>
+        <Button onClick={onStart}>Start Planning</Button>
         <span className={styles.helper}>Three questions, about a minute</span>
       </div>
 

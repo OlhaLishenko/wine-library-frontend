@@ -1,0 +1,29 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.chip {
+  @include FontBasic(14px, 600, $color-text-muted);
+  padding: 12px 18px;
+  border-radius: $radius-pill;
+  border: 1px solid $color-border;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    color $transition-fast,
+    border-color $transition-fast;
+
+  &:hover {
+    border-color: $color-border-hover;
+  }
+}
+
+.selected {
+  background: $color-gold;
+  border-color: $color-gold;
+  color: $color-bg;
+
+  &:hover {
+    border-color: $color-gold;
+  }
+}

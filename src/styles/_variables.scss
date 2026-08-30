@@ -24,6 +24,12 @@ $color-text-subtle: #8a7c71; // tertiary / placeholder
 $color-error: #e5484d;
 $color-success: #6e8a5e;
 
+// Wine type accents (mix chart, breakdown legends, recommendation tags)
+$color-wine-red: #b23a52;
+$color-wine-white: $color-cream;
+$color-wine-rose: #e8a9c0;
+$color-wine-sparkling: $color-gold;
+
 // Alpha borders (gold at low opacity)
 $color-light-opacity: rgba(167, 164, 156, 0.607);
 $color-border: rgba(212, 175, 55, 0.25);

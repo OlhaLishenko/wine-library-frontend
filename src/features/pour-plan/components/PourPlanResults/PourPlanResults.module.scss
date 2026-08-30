@@ -1,0 +1,125 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+  padding: 20px;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 14px;
+}
+
+.eyebrow {
+  @include FontBasic(12px, 700, $color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.subtitle {
+  margin: 0;
+  margin-top: -#{$space-8};
+  @include FontBasic(14px, 400, $color-text-muted);
+}
+
+.bottleCount {
+  display: flex;
+  align-items: baseline;
+  gap: $space-12;
+}
+
+.bottleNumber {
+  @include FontHeading(52px, 800, $color-gold);
+  line-height: 1;
+}
+
+.bottleLabel {
+  @include FontHeading(20px, 700, $color-cream);
+}
+
+.statRow {
+  display: flex;
+  gap: $space-12;
+}
+
+.stat {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: 14px;
+  background: $color-bg;
+  border: 1px solid $color-poll-el-bg;
+  border-radius: 12px;
+}
+
+.statValue {
+  @include FontHeading(18px, 800, $color-cream);
+}
+
+.statLabel {
+  @include FontBasic(11px, 600, $color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.bar {
+  display: flex;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.barSegment {
+  height: 100%;
+}
+
+.breakdownList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breakdownRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.breakdownLabel {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+  @include FontBasic(14px, 400, $color-text-muted);
+}
+
+.breakdownDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.breakdownValue {
+  @include FontBasic(14px, 700, $color-cream);
+}
+
+.note {
+  margin: 0;
+  padding: 14px 16px;
+  @include FontBasic(13px, 400, $color-text-muted);
+  line-height: 1.5;
+  background: rgba($color-burgundy, 0.25);
+  border: 1px solid rgba($color-burgundy, 0.4);
+  border-radius: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12;
+}

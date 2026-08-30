@@ -1,0 +1,35 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.library {
+  display: flex;
+  flex-direction: column;
+  gap: $space-20;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.title {
+  margin: 0;
+  @include FontHeading(22px, 800, $color-cream);
+}
+
+.subtitle {
+  margin: 0;
+  @include FontBasic(14px, 400, $color-text-muted);
+}
+
+.browseLink {
+  align-self: flex-start;
+  @include FontBasic(14px, 600, $color-gold);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+}
