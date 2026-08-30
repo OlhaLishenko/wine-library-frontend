@@ -1,0 +1,74 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  gap: $space-24;
+
+  @include onTablet {
+    max-width: 620px;
+  }
+}
+
+.badge {
+  @include FontBasic(12px, 700, $color-gold);
+  align-self: flex-start;
+  padding: 7px 15px;
+  border-radius: $radius-pill;
+  background: $color-selected;
+  border: 1px solid $color-border;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.title {
+  margin: 0;
+  @include FontHeading(34px, 800);
+  line-height: 1.2;
+
+  @include onTablet {
+    font-size: 42px;
+    line-height: 1.15;
+  }
+
+  @include onDesktop {
+    font-size: 52px;
+    line-height: 1.08;
+  }
+}
+
+.subtitle {
+  margin: 0;
+  @include FontBasic(17px, 400, $color-text-muted);
+  line-height: 1.65;
+
+  @include onTablet {
+    max-width: 520px;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+
+  @include onTablet {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.helper {
+  @include FontBasic(13px, 400, $color-text-subtle);
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: $space-16;
+
+  @include onTablet {
+    flex-direction: row;
+  }
+}

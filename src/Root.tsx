@@ -8,6 +8,7 @@ import { FavoritesPage } from './pages/FavoritesPage';
 import { LibraryPage } from './pages/LibraryPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { SommelierPage } from './pages/SommelierPage';
+import { PourPlanPage } from './pages/PourPlanPage/PourPlanPage';
 import { MainLayout } from './layouts/MainLayout';
 
 export const Root = () => {
@@ -26,6 +27,7 @@ export const Root = () => {
             <Route path="wines/:id" element={<ProductDetailsPage />} />
             <Route path="favorites" element={<FavoritesPage />} />
             <Route path="sommelier" element={<SommelierPage />} />
+            <Route path="plan-your-pour" element={<PourPlanPage />} />
           </Route>
         </Route>
         {/* <Route path="*" element={<NotFoundPage />} /> */}

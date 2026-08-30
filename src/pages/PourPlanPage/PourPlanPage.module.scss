@@ -1,0 +1,17 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.page {
+  @include Content-padding-inline();
+  padding-block: $space-24;
+  background-image: radial-gradient(
+    60% 55% at 90% 0%,
+    rgba($color-burgundy, 0.55),
+    rgba($color-burgundy, 0) 62%
+  );
+  background-repeat: no-repeat;
+
+  @include onDesktop {
+    padding-block: $space-48;
+  }
+}

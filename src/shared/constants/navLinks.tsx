@@ -16,4 +16,9 @@ export const NAVLINKS = {
     path: '/sommelier',
     icon: Icons.Cross,
   },
+  pourPlan: {
+    name: 'Plan Your Pour',
+    path: '/plan-your-pour',
+    icon: Icons.Plus,
+  },
 };

@@ -1,0 +1,28 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+  padding: 20px;
+  background: $color-surface;
+  border: 1px solid $color-poll-el-bg;
+  border-radius: 14px;
+
+  @include onTablet {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.title {
+  margin: 0;
+  @include FontHeading(22px, 800, $color-gold);
+}
+
+.description {
+  margin: 0;
+  @include FontBasic(13px, 400, $color-text-muted);
+  line-height: 1.5;
+}
