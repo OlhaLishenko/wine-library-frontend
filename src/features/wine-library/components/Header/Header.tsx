@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './Header.module.scss';
 import { Icons, IconsPoll } from '@/assets/icons';
 import { Logo } from '@/shared/components/Logo/Logo';
@@ -15,6 +15,8 @@ import { useLogOut } from '@/shared/hooks/useLogOut';
 type HeaderProps = {};
 
 export const Header: React.FC<HeaderProps> = () => {
+  const [minimized, setMinimized] = useState(false);
+
   const { isDesktop } = useScreenWidth();
   const { setOpenMenu } = useContext(UIModalContext);
   const currentUser = useAppSelector<User | null>((state) => state.currentUser);
@@ -31,9 +33,19 @@ export const Header: React.FC<HeaderProps> = () => {
   const userEmail = currentUser ? currentUser.email : 'Unknown email';
   const userFullName = currentUser ? currentUser.fullName : 'Unknown user';
 
+  window.addEventListener('scroll', () => {
+    const inTop = window.scrollY === 0;
+
+    if (inTop) {
+      setMinimized(false);
+    } else {
+      setMinimized(true);
+    }
+  });
+
   return (
     <header className={clsx('container', styles.header)}>
-      <Logo direction="horizontal" />
+      <Logo direction="horizontal" showLogo={!minimized} />
 
       {isDesktop ? (
         <div className={styles.headerNav}>

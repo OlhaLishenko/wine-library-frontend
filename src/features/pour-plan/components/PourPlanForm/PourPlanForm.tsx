@@ -8,17 +8,7 @@ import { PourPlanPaceCard } from '../PourPlanPaceCard/PourPlanPaceCard';
 import { PourPlanResults } from '../PourPlanResults/PourPlanResults';
 import { PourPlanLibrarySection } from '../PourPlanLibrarySection/PourPlanLibrarySection';
 import { WINE_TYPE_COLORS } from '@/shared/constants/wineTypeColors';
-
-const OCCASIONS = [
-  'Dinner',
-  'Birthday',
-  'Wedding',
-  'Party',
-  'Corporate Event',
-  'Casual Gathering',
-  'Tasting',
-  'Other',
-];
+import { OCCASIONS } from '@/shared/types/Occasions.enum';
 
 const PACE_OPTIONS = [
   {
@@ -56,7 +46,7 @@ const DEFAULT_MIX: Record<MixKey, number> = {
 
 export const PourPlanForm: React.FC = () => {
   const [guests, setGuests] = useState(12);
-  const [occasion, setOccasion] = useState('Dinner');
+  const [occasion, setOccasion] = useState<OCCASIONS>(OCCASIONS.DINNER);
   const [duration, setDuration] = useState(4);
   const [role, setRole] = useState<'main' | 'several'>('main');
   const [pace, setPace] = useState('moderate');
@@ -65,6 +55,8 @@ export const PourPlanForm: React.FC = () => {
   const updateMix = (key: MixKey, value: number) => {
     setMix((prev) => ({ ...prev, [key]: value }));
   };
+
+  const occasions = Object.values(OCCASIONS);
 
   return (
     <div className={styles.form}>
@@ -83,7 +75,7 @@ export const PourPlanForm: React.FC = () => {
             type="button"
             className={styles.stepperBtn}
             aria-label="Fewer guests"
-            onClick={() => setGuests((g) => Math.max(1, g - 1))}
+            onClick={() => setGuests((prev) => Math.max(1, prev - 1))}
           >
             −
           </button>
@@ -95,7 +87,7 @@ export const PourPlanForm: React.FC = () => {
             type="button"
             className={styles.stepperBtn}
             aria-label="More guests"
-            onClick={() => setGuests((g) => Math.min(200, g + 1))}
+            onClick={() => setGuests((prev) => Math.min(200, prev + 1))}
           >
             +
           </button>
@@ -111,7 +103,7 @@ export const PourPlanForm: React.FC = () => {
 
       <PourPlanSection index={2} title="The occasion">
         <div className={styles.chips}>
-          {OCCASIONS.map((label) => (
+          {occasions.map((label) => (
             <PourPlanOccasionChip
               key={label}
               label={label}
@@ -138,11 +130,16 @@ export const PourPlanForm: React.FC = () => {
 
       <PourPlanSection index={3} title="How it'll be poured">
         <div className={styles.subsection}>
-          <span className={styles.subsectionLabel}>Wine's role at the table</span>
+          <span className={styles.subsectionLabel}>
+            Wine's role at the table
+          </span>
           <div className={styles.roleToggle}>
             <button
               type="button"
-              className={clsx(styles.roleBtn, role === 'main' && styles.roleBtnActive)}
+              className={clsx(
+                styles.roleBtn,
+                role === 'main' && styles.roleBtnActive
+              )}
               aria-pressed={role === 'main'}
               onClick={() => setRole('main')}
             >
